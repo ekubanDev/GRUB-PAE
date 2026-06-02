@@ -1,15 +1,15 @@
 {
-  "_comment": "REPLACE THIS FILE with your GRUB-PAE Firebase project google-services.json. Download it from: Firebase Console > Project Settings > Your Android apps > google-services.json",
+  "_comment": "Download the real google-services.json from Firebase Console > Project Settings > grub-pae > Android apps. Register package com.tesseract.grubpae.store first if not done.",
   "project_info": {
-    "project_number": "REPLACE_WITH_YOUR_FIREBASE_PROJECT_NUMBER",
-    "firebase_url": "REPLACE_WITH_YOUR_FIREBASE_URL",
-    "project_id": "REPLACE_WITH_YOUR_FIREBASE_PROJECT_ID",
-    "storage_bucket": "REPLACE_WITH_YOUR_FIREBASE_STORAGE_BUCKET"
+    "project_number": "367067097306",
+    "firebase_url": "https://grub-pae-default-rtdb.firebaseio.com",
+    "project_id": "grub-pae",
+    "storage_bucket": "grub-pae.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "REPLACE_WITH_YOUR_ANDROID_APP_ID",
+        "mobilesdk_app_id": "REPLACE_WITH_ANDROID_APP_ID_FROM_FIREBASE_CONSOLE",
         "android_client_info": {
           "package_name": "com.tesseract.grubpae.store"
         }
@@ -17,7 +17,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "REPLACE_WITH_YOUR_FIREBASE_API_KEY"
+          "current_key": "AIzaSyAEWbll-mv0hD9jBZR51wqfVpxxYIilVz8"
         }
       ],
       "services": {
