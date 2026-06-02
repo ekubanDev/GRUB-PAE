@@ -1,0 +1,5 @@
+.env
+*.json.key
+*-adminsdk-*.json
+node_modules/
+dist/
