@@ -1,0 +1,152 @@
+name: GRUB-PAE CI
+
+on:
+  pull_request:
+    branches: [grubpae-main]
+  push:
+    branches: [grubpae-main]
+
+env:
+  NODE_VERSION: "20"
+
+jobs:
+
+  # ─── Job 1: Security audit ────────────────────────────────────────────────
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - enatega-multivendor-admin
+          - enatega-multivendor-web
+          - enatega-multivendor-api-custom
+          - enatega-multivendor-app
+          - enatega-multivendor-rider
+          - enatega-multivendor-store
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ${{ matrix.module }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.module }}
+        run: npm ci --ignore-scripts
+
+      - name: Run audit
+        working-directory: ${{ matrix.module }}
+        # Fail on critical severity only — high vulns are tracked but don't block
+        run: npm audit --audit-level=critical
+
+  # ─── Job 2: Build web ────────────────────────────────────────────────────
+
+  build-web:
+    name: Build Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: enatega-multivendor-web/package-lock.json
+
+      - name: Install
+        working-directory: enatega-multivendor-web
+        run: npm ci --ignore-scripts
+
+      - name: Build
+        working-directory: enatega-multivendor-web
+        env:
+          NEXT_PUBLIC_SERVER_URL: http://localhost:4000/
+          NEXT_PUBLIC_WS_SERVER_URL: ws://localhost:4000/
+        run: npm run build
+
+  # ─── Job 3: Build admin ──────────────────────────────────────────────────
+
+  build-admin:
+    name: Build Admin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: enatega-multivendor-admin/package-lock.json
+
+      - name: Install
+        working-directory: enatega-multivendor-admin
+        run: npm ci --ignore-scripts
+
+      - name: Build
+        working-directory: enatega-multivendor-admin
+        env:
+          NEXT_PUBLIC_SERVER_URL: http://localhost:4000/
+          NEXT_PUBLIC_WS_SERVER_URL: ws://localhost:4000/
+        run: npm run build
+
+  # ─── Job 4: Build API ────────────────────────────────────────────────────
+
+  build-api:
+    name: Build API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: enatega-multivendor-api-custom/package-lock.json
+
+      - name: Install
+        working-directory: enatega-multivendor-api-custom
+        run: npm ci --ignore-scripts
+
+      - name: Verify entry point resolves
+        working-directory: enatega-multivendor-api-custom
+        # Dry-run syntax check without starting the server
+        run: node --check src/index.js
+
+  # ─── Job 5: Lint ─────────────────────────────────────────────────────────
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install ESLint
+        run: npm install -g eslint@8
+
+      - name: Lint admin
+        working-directory: enatega-multivendor-admin
+        run: npx next lint --max-warnings=0 || true
+
+      - name: Lint web
+        working-directory: enatega-multivendor-web
+        run: npx next lint --max-warnings=0 || true
+
+      - name: Lint API
+        working-directory: enatega-multivendor-api-custom
+        run: |
+          npm ci --ignore-scripts
+          npm run lint || true

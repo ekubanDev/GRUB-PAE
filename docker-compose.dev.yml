@@ -73,6 +73,7 @@ services:
       - NEXT_PUBLIC_WS_SERVER_URL=ws://api:4000/
     ports:
       - "3001:3001"
+    command: sh -c "npm run dev -- -p 3001"
     volumes:
       - ./enatega-multivendor-admin:/app
       - /app/node_modules
