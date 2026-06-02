@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 4000
 
 // ─── Sentry ──────────────────────────────────────────────────────────────────
 
-if (process.env.SENTRY_DSN) {
+if (process.env.SENTRY_DSN && process.env.SENTRY_DSN.startsWith('https://')) {
   Sentry.init({ dsn: process.env.SENTRY_DSN, environment: process.env.NODE_ENV })
 }
 
