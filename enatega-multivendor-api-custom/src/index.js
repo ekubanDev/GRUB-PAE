@@ -49,6 +49,8 @@ async function connectDB() {
       appId: '1:367067097306:web:cdb4efc41c792b85499de3',
       measurementId: 'G-K8WV720K8C',
       googleApiKey: process.env.GOOGLE_MAPS_API_KEY || '',
+      cloudinaryUploadUrl: process.env.CLOUDINARY_UPLOAD_URL || '',
+      cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '',
       skipEmailVerification: process.env.NODE_ENV !== 'production',
       skipMobileVerification: process.env.NODE_ENV !== 'production',
       testOtp: '123456'
