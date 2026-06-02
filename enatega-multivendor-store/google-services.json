@@ -1,15 +1,51 @@
 {
-  "_comment": "Download the real google-services.json from Firebase Console > Project Settings > grub-pae > Android apps. Register package com.tesseract.grubpae.store first if not done.",
   "project_info": {
     "project_number": "367067097306",
-    "firebase_url": "https://grub-pae-default-rtdb.firebaseio.com",
     "project_id": "grub-pae",
     "storage_bucket": "grub-pae.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "REPLACE_WITH_ANDROID_APP_ID_FROM_FIREBASE_CONSOLE",
+        "mobilesdk_app_id": "1:367067097306:android:93f7eeae34712b42499de3",
+        "android_client_info": {
+          "package_name": "com.tesseract.grubpae"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHBgvSpWB-jww2sDSfJj73ix-di_c4Xj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367067097306:android:5eae31cc5f3e86ad499de3",
+        "android_client_info": {
+          "package_name": "com.tesseract.grubpae.rider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHBgvSpWB-jww2sDSfJj73ix-di_c4Xj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367067097306:android:6dc0ca2260b9577d499de3",
         "android_client_info": {
           "package_name": "com.tesseract.grubpae.store"
         }
@@ -17,7 +53,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAEWbll-mv0hD9jBZR51wqfVpxxYIilVz8"
+          "current_key": "AIzaSyCHBgvSpWB-jww2sDSfJj73ix-di_c4Xj4"
         }
       ],
       "services": {
