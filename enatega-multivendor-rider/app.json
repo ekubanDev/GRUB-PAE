@@ -50,7 +50,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.tesseract.grubpae.rider",
       "config": {
-        "googleMapsApiKey": "REPLACE_WITH_YOUR_GOOGLE_MAPS_KEY"
+        "googleMapsApiKey": "AIzaSyBfMAP1dGYsnw_8fzIBxCPTPIPoKnQ8mH8"
       },
       "icon": "./lib/assets/images/icon.png",
       "infoPlist": {
@@ -72,7 +72,7 @@
       ],
       "config": {
         "googleMaps": {
-          "apiKey": "REPLACE_WITH_YOUR_GOOGLE_MAPS_KEY"
+          "apiKey": "AIzaSyBfMAP1dGYsnw_8fzIBxCPTPIPoKnQ8mH8"
         }
       },
       "package": "com.tesseract.grubpae.rider",

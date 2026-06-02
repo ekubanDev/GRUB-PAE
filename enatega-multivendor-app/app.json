@@ -36,7 +36,7 @@
       "bundleIdentifier": "com.tesseract.grubpae",
       "icon": "./assets/icon.png",
       "config": {
-        "googleMapsApiKey": "REPLACE_WITH_YOUR_GOOGLE_MAPS_KEY"
+        "googleMapsApiKey": "AIzaSyBfMAP1dGYsnw_8fzIBxCPTPIPoKnQ8mH8"
       },
       "usesAppleSignIn": true,
       "infoPlist": {
@@ -70,7 +70,7 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "REPLACE_WITH_YOUR_GOOGLE_MAPS_KEY"
+          "apiKey": "AIzaSyBfMAP1dGYsnw_8fzIBxCPTPIPoKnQ8mH8"
         }
       },
       "permissions": ["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.FOREGROUND_SERVICE", "com.google.android.gms.permission.AD_ID"],
