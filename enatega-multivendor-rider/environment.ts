@@ -10,25 +10,23 @@ const getEnvVars = (env = Updates.channel) => {
   }
   if (!__DEV__) {
     return {
-      GRAPHQL_URL: "https://aws-server-v2.enatega.com/graphql",
-      WS_GRAPHQL_URL: "wss://aws-server-v2.enatega.com/graphql",
+      GRAPHQL_URL: "REPLACE_WITH_YOUR_GRUBPAE_API_URL/graphql",
+      WS_GRAPHQL_URL: "REPLACE_WITH_YOUR_GRUBPAE_WS_URL/graphql",
       SENTRY_DSN:
         configuration?.riderAppSentryUrl ??
-        "https://e963731ba0f84e5d823a2bbe2968ea4d@o1103026.ingest.sentry.io/6135261",
-      // GOOGLE_MAPS_KEY: 'AIzaSyBk4tvTtPaSEAVSvaao2yISz4m8Q-BeE1M',
-      GOOGLE_MAPS_KEY:configuration?.googleApiKey,
+        "REPLACE_WITH_YOUR_SENTRY_DSN",
+      GOOGLE_MAPS_KEY: configuration?.googleApiKey,
       ENVIRONMENT: "production",
     };
   }
 
   return {
-    GRAPHQL_URL: "https://aws-server-v2.enatega.com/graphql",
-    WS_GRAPHQL_URL: "wss://aws-server-v2.enatega.com/graphql",
+    GRAPHQL_URL: "http://localhost:4000/graphql",
+    WS_GRAPHQL_URL: "ws://localhost:4000/graphql",
     SENTRY_DSN:
       configuration?.riderAppSentryUrl ??
-      "https://e963731ba0f84e5d823a2bbe2968ea4d@o1103026.ingest.sentry.io/6135261",
-    // GOOGLE_MAPS_KEY: 'AIzaSyBk4tvTtPaSEAVSvaao2yISz4m8Q-BeE1M',
-    GOOGLE_MAPS_KEY:configuration?.googleApiKey,
+      "REPLACE_WITH_YOUR_SENTRY_DSN",
+    GOOGLE_MAPS_KEY: configuration?.googleApiKey,
     ENVIRONMENT: "development",
   };
 };

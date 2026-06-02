@@ -333,3 +333,42 @@ A non-standard security mechanism present in admin, web, customer app, and rider
 ---
 
 *Report generated during Phase 1 audit. Last updated: 2026-06-02.*
+
+---
+
+## 10. Dependency Security Audit (Phase 2)
+
+Audit run: `npm audit --audit-level=high` across all 5 modules. Date: 2026-06-02.  
+**No auto-fixes applied** — review required before remediation.
+
+### Summary
+
+| Module | Critical | High | Moderate | Low | Total |
+|---|---|---|---|---|---|
+| enatega-multivendor-admin | 3 | 12 | 12 | 1 | 28 |
+| enatega-multivendor-app | **17** | 14 | 38 | 0 | 69 |
+| enatega-multivendor-rider | 1 | 12 | 29 | 3 | 45 |
+| enatega-multivendor-store | 1 | 11 | 24 | 2 | 38 |
+| enatega-multivendor-web | 2 | **21** | 14 | 3 | 40 |
+| **TOTAL** | **24** | **70** | **117** | **9** | **220** |
+
+### Notable Vulnerabilities (recurring across modules)
+
+| Package | Severity | CVE / Advisory | Modules Affected | Notes |
+|---|---|---|---|---|
+| `yaml` 2.0.0–2.8.2 | Moderate | [GHSA-48c2-rrv3-qjmp](https://github.com/advisories/GHSA-48c2-rrv3-qjmp) | All 5 | Stack overflow via deeply nested YAML. `npm audit fix` resolves. |
+| `ws` 8.0.0–8.20.0 | Moderate | [GHSA-58qx-3vcg-4xpx](https://github.com/advisories/GHSA-58qx-3vcg-4xpx) | rider, store | Uninitialized memory disclosure. `npm audit fix` resolves. |
+| `webpack` 5.49.0–5.104.0 | High | [GHSA-8fgc-7cc6-rx7x](https://github.com/advisories/GHSA-8fgc-7cc6-rx7x), [GHSA-38r7-794h-5758](https://github.com/advisories/GHSA-38r7-794h-5758) | web | SSRF via `buildHttp` allowedUris bypass. `npm audit fix` resolves. |
+| `uuid` <11.1.1 | Moderate | [GHSA-w5hq-g745-h8pq](https://github.com/advisories/GHSA-w5hq-g745-h8pq) | admin | Missing buffer bounds check. `npm audit fix` resolves. |
+| `yargs-parser` 6.0.0–13.1.1 | Moderate | [GHSA-p9pc-299p-vxgp](https://github.com/advisories/GHSA-p9pc-299p-vxgp) | app | Prototype pollution. Fix requires `--force` (breaking change). |
+
+### Customer App Note
+The customer app (`enatega-multivendor-app`) has **17 critical** vulnerabilities — the highest count. This is expected for a React Native/Expo project of this age; most will be in transitive dev dependencies (bundlers, CLI tools) rather than runtime code. The CI pipeline (Phase 5) will gate on `--audit-level=critical` to prevent regressions.
+
+### Recommended Remediation Order
+1. `npm audit fix` (non-breaking) across all 5 modules — resolves `yaml`, `ws`, `uuid`, `webpack`
+2. Review breaking-change fixes (`--force`) per module individually — do not bulk-apply
+3. Pin resolved versions in each module's `package.json` after verification
+4. Re-run audit post-fix and update this section
+
+**Do not run `npm audit fix --force` without reviewing the breaking changes per module.**

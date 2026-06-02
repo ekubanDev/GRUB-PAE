@@ -11,16 +11,16 @@ const useEnvVars = (env = Updates.channel) => {
   const configuration = useContext(ConfigurationContext)
   if (env === 'production' || env === 'staging') {
     return {
-      GRAPHQL_URL: 'https://aws-server-v2.enatega.com/graphql',
-      WS_GRAPHQL_URL: 'wss://aws-server-v2.enatega.com/graphql',
-      SERVER_URL: 'https://aws-server-v2.enatega.com/graphql',
-      SERVER_REST_URL: 'https://aws-server-v2.enatega.com/',
+      GRAPHQL_URL: 'REPLACE_WITH_YOUR_GRUBPAE_API_URL/graphql',
+      WS_GRAPHQL_URL: 'REPLACE_WITH_YOUR_GRUBPAE_WS_URL/graphql',
+      SERVER_URL: 'REPLACE_WITH_YOUR_GRUBPAE_API_URL/graphql',
+      SERVER_REST_URL: 'REPLACE_WITH_YOUR_GRUBPAE_API_URL/',
       IOS_CLIENT_ID_GOOGLE: configuration?.iOSClientID,
       ANDROID_CLIENT_ID_GOOGLE: configuration?.androidClientID,
       AMPLITUDE_API_KEY: configuration?.appAmplitudeApiKey,
       GOOGLE_MAPS_KEY: configuration?.googleApiKey,
       EXPO_CLIENT_ID: configuration?.expoClientID,
-      SENTRY_DSN: configuration?.customerAppSentryUrl ?? 'https://4213c02977911e1b75898c93cc5517fb@o1103026.ingest.us.sentry.io/4508662470803456',
+      SENTRY_DSN: configuration?.customerAppSentryUrl ?? 'REPLACE_WITH_YOUR_SENTRY_DSN',
       TERMS_AND_CONDITIONS: configuration?.termsAndConditions,
       PRIVACY_POLICY: configuration?.privacyPolicy,
       TEST_OTP: configuration?.testOtp,
@@ -29,16 +29,16 @@ const useEnvVars = (env = Updates.channel) => {
   }
 
   return {
-    GRAPHQL_URL: 'https://aws-server-v2.enatega.com/graphql',
-    WS_GRAPHQL_URL: 'wss://aws-server-v2.enatega.com/graphql',
-    SERVER_URL: 'https://aws-server-v2.enatega.com/graphql',
-    SERVER_REST_URL: 'https://aws-server-v2.enatega.com/',
+    GRAPHQL_URL: 'http://localhost:4000/graphql',
+    WS_GRAPHQL_URL: 'ws://localhost:4000/graphql',
+    SERVER_URL: 'http://localhost:4000/graphql',
+    SERVER_REST_URL: 'http://localhost:4000/',
     IOS_CLIENT_ID_GOOGLE: configuration?.iOSClientID,
     ANDROID_CLIENT_ID_GOOGLE: configuration?.androidClientID,
     AMPLITUDE_API_KEY: configuration?.appAmplitudeApiKey,
     GOOGLE_MAPS_KEY: configuration?.googleApiKey,
     EXPO_CLIENT_ID: configuration?.expoClientID,
-    SENTRY_DSN: configuration?.customerAppSentryUrl ?? 'https://4213c02977911e1b75898c93cc5517fb@o1103026.ingest.us.sentry.io/4508662470803456',
+    SENTRY_DSN: configuration?.customerAppSentryUrl ?? 'REPLACE_WITH_YOUR_SENTRY_DSN',
     TERMS_AND_CONDITIONS: configuration?.termsAndConditions,
     PRIVACY_POLICY: configuration?.privacyPolicy,
     TEST_OTP: configuration?.testOtp,

@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Enatega Multi",
-    "scheme": "enategamultivendor",
-    "version": "1.1.18",
-    "description": "Enatega is a starter kit food ordering app built in React Native using Expo for IOS and Android. It's made keeping good aesthetics in mind as well keeping the best coding practices in mind. Its fully customisable to easily help you in your next food delivery project. https://market.nativebase.io/view/react-native-food-delivery-backend-app",
-    "slug": "enategamultivendor",
-    "owner": "ninjas_code",
+    "name": "GRUB-PAE",
+    "scheme": "grubpae",
+    "version": "1.0.0",
+    "description": "GRUB-PAE — Food delivery for Ghana and West Africa by Tesseract Holdings.",
+    "slug": "grubpae",
+    "owner": "REPLACE_WITH_YOUR_EXPO_ACCOUNT",
     "experiments": {
       "buildCacheProvider": "eas"
     },
@@ -33,10 +33,10 @@
       },
       "supportsTablet": true,
       "userInterfaceStyle": "automatic",
-      "bundleIdentifier": "com.enatega.multivendor",
+      "bundleIdentifier": "com.tesseract.grubpae",
       "icon": "./assets/icon.png",
       "config": {
-        "googleMapsApiKey": "AIzaSyCcm7_Wd7uvmC9YnYLu2JHGWPt6z1MaL1E"
+        "googleMapsApiKey": "REPLACE_WITH_YOUR_GOOGLE_MAPS_KEY"
       },
       "usesAppleSignIn": true,
       "infoPlist": {
@@ -60,7 +60,7 @@
     },
     "android": {
       "versionCode": 118,
-      "package": "com.enatega.multivendor",
+      "package": "com.tesseract.grubpae",
       "userInterfaceStyle": "automatic",
       "googleServicesFile": "./google-services.json",
       "splash": {
@@ -70,7 +70,7 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCcm7_Wd7uvmC9YnYLu2JHGWPt6z1MaL1E"
+          "apiKey": "REPLACE_WITH_YOUR_GOOGLE_MAPS_KEY"
         }
       },
       "permissions": ["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.FOREGROUND_SERVICE", "com.google.android.gms.permission.AD_ID"],
@@ -121,14 +121,14 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "331d4e5b-b12a-434a-92ec-d6d283dc0e46"
+        "projectId": "REPLACE_WITH_YOUR_EAS_PROJECT_ID"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/331d4e5b-b12a-434a-92ec-d6d283dc0e46"
+      "url": "https://u.expo.dev/REPLACE_WITH_YOUR_EAS_PROJECT_ID"
     }
   }
 }

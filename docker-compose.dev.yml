@@ -1,0 +1,108 @@
+version: "3.9"
+
+networks:
+  grubpae-dev:
+    driver: bridge
+
+volumes:
+  mongo-data:
+
+services:
+
+  mongo:
+    image: mongo:7
+    container_name: grubpae-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: grubpae
+      MONGO_INITDB_ROOT_PASSWORD: grubpae_dev_password
+      MONGO_INITDB_DATABASE: grubpae
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - grubpae-dev
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  api:
+    build:
+      context: ./enatega-multivendor-api-custom
+      dockerfile: Dockerfile.dev
+    container_name: grubpae-api
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    env_file:
+      - ./enatega-multivendor-api-custom/.env
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://grubpae:grubpae_dev_password@mongo:27017/grubpae?authSource=admin
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./enatega-multivendor-api-custom/src:/app/src
+    networks:
+      - grubpae-dev
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  admin:
+    build:
+      context: ./enatega-multivendor-admin
+      dockerfile: Dockerfile.dev
+    container_name: grubpae-admin
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    env_file:
+      - ./enatega-multivendor-admin/.env
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://api:4000/
+      - NEXT_PUBLIC_WS_SERVER_URL=ws://api:4000/
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./enatega-multivendor-admin:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - grubpae-dev
+
+  web:
+    build:
+      context: ./enatega-multivendor-web
+      dockerfile: Dockerfile.dev
+    container_name: grubpae-web
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    env_file:
+      - ./enatega-multivendor-web/.env
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://api:4000/
+      - NEXT_PUBLIC_WS_SERVER_URL=ws://api:4000/
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./enatega-multivendor-web:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - grubpae-dev
+
+# Mobile apps (enatega-multivendor-app, enatega-multivendor-rider, enatega-multivendor-store)
+# run natively via Expo — do NOT containerize them.
+# Run with: cd enatega-multivendor-app && npx expo start
