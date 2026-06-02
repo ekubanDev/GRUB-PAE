@@ -1,24 +1,15 @@
 import { LatLng } from '../types';
 
+// Default to Accra, Ghana — GRUB-PAE primary market
 export const DEFAULT_CENTER: LatLng = {
-  lat: 33.684422,
-  lng: 73.047882,
+  lat: 5.6037,
+  lng: -0.1870,
 };
+
+// Default polygon covers central Accra
 export const DEFAULT_POLYGON = [
-  {
-    lat: 33.6981335731709,
-    lng: 73.036895671875,
-  },
-  {
-    lat: 33.684779099960515,
-    lng: 73.04650870898438,
-  },
-  {
-    lat: 33.693206228391965,
-    lng: 73.06461898425293,
-  },
-  {
-    lat: 33.706880699271096,
-    lng: 73.05410472491455,
-  },
+  { lat: 5.6200, lng: -0.2050 },
+  { lat: 5.6200, lng: -0.1690 },
+  { lat: 5.5870, lng: -0.1690 },
+  { lat: 5.5870, lng: -0.2050 },
 ];

@@ -87,13 +87,13 @@ const CustomGoogleMapsLocationBounds: React.FC<
   const [zoom, setZoom] = useState(14);
   const [deliveryZoneType, setDeliveryZoneType] = useState('radius');
   const [center, setCenter] = useState({
-    lat: -25.2744, // Central latitude of Australia
-    lng: 133.7751, // Central longitude of Australia
+    lat: 5.6037, // Accra, Ghana — GRUB-PAE default market
+    lng: -0.1870, 
   });
 
   const [marker, setMarker] = useState({
-    lat: -25.2744, // Marker at the same central point
-    lng: 133.7751, // Marker at the same central point
+    lat: 5.6037, // Accra, Ghana — GRUB-PAE default market
+    lng: -0.1870, // Accra, Ghana — GRUB-PAE default market
   });
   const [path, setPath] = useState<ILocationPoint[]>([]);
   const [distance, setDistance] = useState(1);

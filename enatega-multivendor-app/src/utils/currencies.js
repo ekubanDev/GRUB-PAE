@@ -1,3 +1,12 @@
+// GRUB-PAE primary payment provider — Ghana Cedis default
+export const paystackCurrencies = [
+  { currency: 'GHS', currencySymbol: '₵', multiplier: 100, type: 'PAYSTACK' },
+  { currency: 'NGN', currencySymbol: '₦', multiplier: 100, type: 'PAYSTACK' },
+  { currency: 'USD', currencySymbol: '$', multiplier: 100, type: 'PAYSTACK' },
+  { currency: 'ZAR', currencySymbol: 'R', multiplier: 100, type: 'PAYSTACK' },
+  { currency: 'KES', currencySymbol: 'Ksh', multiplier: 100, type: 'PAYSTACK' },
+]
+
 export const stripeCurrencies = [
   { currency: 'USD', currencySymbol: '$', multiplier: 100, type: 'STRIPE' },
   { currency: 'AED', currencySymbol: 'د.إ', multiplier: 100, type: 'STRIPE' },

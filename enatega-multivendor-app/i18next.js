@@ -4,6 +4,7 @@ import * as Localization from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { en } from './translations/en'
+import { tw } from './translations/tw'
 import { de } from './translations/de'
 import { fr } from './translations/fr'
 import { km } from './translations/km'
@@ -38,6 +39,7 @@ import { nl } from './translations/nl'
 
 export const languageResources = {
   en: { translation: en },
+  tw: { translation: tw }, // Twi (Akan) — Ghana primary language, placeholder strings
   zh: { translation: zh },
   de: { translation: de },
   fr: { translation: fr },

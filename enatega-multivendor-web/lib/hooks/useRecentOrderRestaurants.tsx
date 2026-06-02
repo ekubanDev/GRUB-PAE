@@ -13,8 +13,8 @@ function useRecentOrderRestaurants(enabled = true) {
     RECENT_ORDER_RESTAURANTS,
     {
       variables: {
-        latitude: 33.5831583,
-        longitude: 73.0810976,
+        latitude: 5.6037,   // Accra, Ghana — GRUB-PAE default market
+        longitude: -0.1870,
       },
       fetchPolicy: "cache-and-network",
       skip: !enabled,

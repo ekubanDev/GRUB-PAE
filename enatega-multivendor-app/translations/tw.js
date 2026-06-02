@@ -1,0 +1,40 @@
+// Twi (Akan) language translations for GRUB-PAE
+// TODO: All strings are placeholders — requires professional Twi translation
+// Primary market: Ghana. Twi is spoken by ~45% of the population.
+
+export const tw = {
+  title0: 'TODO: Selected Language',
+  subtitle0: 'Twi',
+  description0: 'TODO: Select any language of your choice to change the content of the app.',
+  title1: 'TODO: Tasty',
+  subtitle1: 'TODO: BreakFast',
+  description1: 'TODO: Breakfast description',
+  title2: 'TODO: Refreshing',
+  subtitle2: 'TODO: Drinks',
+  description2: 'TODO: Drinks description',
+  title3: 'TODO: Delicious',
+  subtitle3: 'TODO: Icecream',
+  description3: 'TODO: Icecream description',
+  getStarted: 'TODO: Get Started',
+  welcome: 'TODO: Welcome to GRUB-PAE',
+  welcomeScreen: 'TODO: Welcome to GRUB-PAE',
+  loginBtn: 'TODO: Login',
+  registerBtn: 'TODO: Register',
+  name: 'TODO: Name',
+  phone: 'TODO: Phone',
+  email: 'TODO: Email',
+  emailphone: 'TODO: Email or Phone',
+  password: 'TODO: Password',
+  deliveryAddress: 'TODO: Delivery Address',
+  fullDeliveryAddress: 'TODO: Your full delivery address',
+  cod: 'TODO: Cash on Delivery',
+  creditDebitCard: 'TODO: Card Payment (Paystack)',
+  mtnMobileMoney: 'TODO: MTN Mobile Money',
+  vodafoneCash: 'TODO: Vodafone Cash',
+  airteltigoMoney: 'TODO: AirtelTigo Money',
+  paymentMethod: 'TODO: Payment Methods',
+  paymentText: 'TODO: How do you wish to pay?',
+  checkout: 'TODO: Checkout',
+  orderConfirmed: 'TODO: Your Order is confirmed',
+  // Add remaining keys as translation work progresses
+}
