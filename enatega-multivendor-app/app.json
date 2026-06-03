@@ -4,8 +4,8 @@
     "scheme": "grubpae",
     "version": "1.0.0",
     "description": "GRUB-PAE — Food delivery for Ghana and West Africa by Tesseract Holdings.",
-    "slug": "grubpae",
-    "owner": "REPLACE_WITH_YOUR_EXPO_ACCOUNT",
+    "slug": "grub-pae",
+    "owner": "grubpae",
     "experiments": {
       "buildCacheProvider": "eas"
     },
@@ -121,14 +121,14 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "REPLACE_WITH_YOUR_EAS_PROJECT_ID"
+        "projectId": "8551f2c3-3abd-4955-aa91-4c2838e1d9e3"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/REPLACE_WITH_YOUR_EAS_PROJECT_ID"
+      "url": "https://u.expo.dev/8551f2c3-3abd-4955-aa91-4c2838e1d9e3"
     }
   }
 }
