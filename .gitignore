@@ -67,3 +67,18 @@ buck-out/
 web-build/
 
 # @end expo-cli
+
+# Firebase Admin SDK service account files — NEVER commit these
+*adminsdk*.json
+google-service-account*.json
+*-firebase-adminsdk-*.json
+*.serviceaccount.json
+*.pem
+*.p8
+*.p12
+*.mobileprovision
+
+# Env files
+.env
+.env.local
+.env.*.local
