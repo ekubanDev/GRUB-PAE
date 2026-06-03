@@ -69,14 +69,10 @@ async function startServer() {
   app.use(cors({ origin: '*', credentials: true }))
   app.use(helmet({ contentSecurityPolicy: process.env.NODE_ENV === 'production' }))
 
-  // Capture raw body for Paystack webhook signature verification
-  app.use((req, res, next) => {
-    let data = ''
-    req.on('data', chunk => { data += chunk })
-    req.on('end', () => { req.rawBody = data; next() })
-  })
-
-  app.use(express.json())
+  // Parse JSON and capture raw body for Paystack webhook signature verification
+  app.use(express.json({
+    verify: (req, _res, buf) => { req.rawBody = buf.toString() }
+  }))
 
   // Health check for Docker / load balancer
   app.get('/health', (_, res) => res.json({ status: 'ok', ts: Date.now() }))
