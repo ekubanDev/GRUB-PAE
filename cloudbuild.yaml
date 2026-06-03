@@ -1,0 +1,43 @@
+steps:
+  # Build the Docker image from the API subdirectory
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/grubpae-api:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/grubpae-api:latest'
+      - './enatega-multivendor-api-custom'
+
+  # Push both tags to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/grubpae-api:$COMMIT_SHA']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/grubpae-api:latest']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'grubpae-api'
+      - '--image=gcr.io/$PROJECT_ID/grubpae-api:$COMMIT_SHA'
+      - '--region=europe-west1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--port=4000'
+      - '--min-instances=1'
+      - '--max-instances=10'
+      - '--memory=512Mi'
+      - '--cpu=1'
+      - '--timeout=3600'
+      - '--session-affinity'
+
+images:
+  - 'gcr.io/$PROJECT_ID/grubpae-api:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/grubpae-api:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

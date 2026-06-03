@@ -1,0 +1,25 @@
+.gcloudignore
+.git
+.github
+.gitignore
+
+# Mobile apps — not deployed to Cloud Run
+enatega-multivendor-app/
+enatega-multivendor-rider/
+enatega-multivendor-store/
+
+# Frontend — deployed separately to Vercel
+enatega-multivendor-admin/
+enatega-multivendor-web/
+
+# Docs and scripts
+docs/
+assets/
+*.md
+
+# Node modules
+**/node_modules/
+
+# Env files
+**/.env
+**/.env.local
