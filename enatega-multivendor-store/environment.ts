@@ -12,8 +12,8 @@ const getEnvVars = (env = Updates.channel) => {
 
   if (env === "production" || env === "staging") {
     return {
-      GRAPHQL_URL: "REPLACE_WITH_YOUR_GRUBPAE_API_URL/graphql",
-      WS_GRAPHQL_URL: "REPLACE_WITH_YOUR_GRUBPAE_WS_URL/graphql",
+      GRAPHQL_URL: "https://grubpae-api-367067097306.europe-west1.run.app/graphql",
+      WS_GRAPHQL_URL: "wss://grubpae-api-367067097306.europe-west1.run.app/graphql",
     };
   }
   return {

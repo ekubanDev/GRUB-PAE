@@ -11,10 +11,10 @@ const useEnvVars = (env = Updates.channel) => {
   const configuration = useContext(ConfigurationContext)
   if (env === 'production' || env === 'staging') {
     return {
-      GRAPHQL_URL: 'REPLACE_WITH_YOUR_GRUBPAE_API_URL/graphql',
-      WS_GRAPHQL_URL: 'REPLACE_WITH_YOUR_GRUBPAE_WS_URL/graphql',
-      SERVER_URL: 'REPLACE_WITH_YOUR_GRUBPAE_API_URL/graphql',
-      SERVER_REST_URL: 'REPLACE_WITH_YOUR_GRUBPAE_API_URL/',
+      GRAPHQL_URL: 'https://grubpae-api-367067097306.europe-west1.run.app/graphql',
+      WS_GRAPHQL_URL: 'wss://grubpae-api-367067097306.europe-west1.run.app/graphql',
+      SERVER_URL: 'https://grubpae-api-367067097306.europe-west1.run.app/graphql',
+      SERVER_REST_URL: 'https://grubpae-api-367067097306.europe-west1.run.app/',
       IOS_CLIENT_ID_GOOGLE: configuration?.iOSClientID,
       ANDROID_CLIENT_ID_GOOGLE: configuration?.androidClientID,
       AMPLITUDE_API_KEY: configuration?.appAmplitudeApiKey,
