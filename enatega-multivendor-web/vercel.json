@@ -1,0 +1,10 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_SERVER_URL": "@grubpae-api-url",
+    "NEXT_PUBLIC_WS_SERVER_URL": "@grubpae-ws-url"
+  }
+}
