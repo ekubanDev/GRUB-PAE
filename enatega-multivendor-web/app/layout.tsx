@@ -66,7 +66,7 @@ export default async function RootLayout({
         </Script>
 
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#94e469" />
+        <meta name="theme-color" content="#F59E0B" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 

@@ -15,16 +15,19 @@ layer(primereact);
   @tailwind utilities;
 }
 
+/* GRUB-PAE — Ghana/West Africa inspired palette */
 :root {
-  --primary-color: #b1c748;
-  --primary-dark: #5ac12f;
-  --secondary-color: #bac973;
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
+  --primary-color: #F59E0B;
+  --primary-light: #FEF3C7;
+  --primary-dark: #D97706;
+  --secondary-color: #15803D;
+  --accent-color: #DC2626;
+  --foreground-rgb: 28, 25, 23;
+  --background-start-rgb: 255, 251, 235;
   --background-end-rgb: 255, 255, 255;
-  --dark-950: #030712;
-  --dark-900: #111827;
-  --dark-600: #4b5563;
+  --dark-950: #1C1917;
+  --dark-900: #292524;
+  --dark-600: #57534E;
 }
 
 html,

@@ -12,13 +12,18 @@
   @tailwind utilities;
 }
 
+/* GRUB-PAE — Ghana/West Africa inspired palette
+   Primary: Kente Gold (Gold Coast heritage)
+   Secondary: Ghana Green (flag, lush vegetation)
+   Accent: Ghana Red (flag) */
 :root {
-  --primary-color: #75d04b;
-   --primary-light: #F3FFEE;
-   --primary-dark: #5AC12F;
-  --secondary-color: #0EA5E9;
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
+  --primary-color: #F59E0B;
+  --primary-light: #FEF3C7;
+  --primary-dark: #D97706;
+  --secondary-color: #15803D;
+  --accent-color: #DC2626;
+  --foreground-rgb: 28, 25, 23;
+  --background-start-rgb: 255, 251, 235;
   --background-end-rgb: 255, 255, 255;
 }
 

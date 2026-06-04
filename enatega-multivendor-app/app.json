@@ -53,7 +53,7 @@
     },
     "notification": {
       "iosDisplayInForeground": true,
-      "color": "#90E36D",
+      "color": "#F59E0B",
       "icon": "./assets/not-icon.png",
       "androidMode": "default",
       "androidCollapsedTitle": "GRUB-PAE"
