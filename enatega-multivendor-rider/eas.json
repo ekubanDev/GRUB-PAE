@@ -23,6 +23,13 @@
     "production": {
       "channel": "production",
       "node": "20.20.0"
+    },
+    "ios-simulator": {
+      "developmentClient": false,
+      "distribution": "simulator",
+      "ios": {
+        "simulator": true
+      }
     }
   },
   "submit": {

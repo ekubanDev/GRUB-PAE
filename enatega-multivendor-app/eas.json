@@ -21,6 +21,13 @@
     },
     "production": {
       "channel": "production"
+    },
+    "ios-simulator": {
+      "developmentClient": false,
+      "distribution": "simulator",
+      "ios": {
+        "simulator": true
+      }
     }
   },
   "submit": {
