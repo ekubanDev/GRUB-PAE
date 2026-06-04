@@ -20,15 +20,15 @@ const Help = props => {
   const [links, setLinks] = useState([
     {
       title: t('titleProductPage'),
-      url: 'https://enatega.com/enatega-multi-vendor/'
+      url: 'https://grubpae.com/'
     },
     {
       title: t('titleDocs'),
-      url: 'https://enatega.com/multi-vendor-doc/'
+      url: 'https://grubpae.com/docs/'
     },
     {
       title: t('titleBlog'),
-      url: 'https://enatega.com/blog/'
+      url: 'https://grubpae.com/blog/'
     },
     {
       title: t('titleAboutUs'),
@@ -49,16 +49,16 @@ const Help = props => {
       {
         title: t('titleProductPage'),
         url:
-          'https://enatega.com/enatega-multivendor-open-source-food-delivery-solution/'
+          'https://grubpae.com/'
       },
       {
         title: t('titleDocs'),
-        url: 'https://enatega.com/multivendor-documentation/'
+        url: 'https://grubpae.com/docs/'
       },
       {
         title: t('titleBlog'),
         url:
-          'https://enatega.com/blogs-enatega-open-source-food-delivery-solutions/'
+          'https://grubpae.com/blog/'
       },
       {
         title: t('titleAboutUs'),

@@ -23,7 +23,7 @@
         "@sentry/react-native/expo",
         {
           "organization": "ninjas-code",
-          "project": "enatega-rider-app",
+          "project": "grubpae-rider-app",
           "url": "https://sentry.io/"
         }
       ],

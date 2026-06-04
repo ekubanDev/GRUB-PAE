@@ -105,7 +105,7 @@ const setupApollo = () => {
       connectionParams: async () => {
         const token = await AsyncStorage.getItem(RIDER_TOKEN);
         const publicToken = await getValidPublicToken(
-          GRAPHQL_URL ?? "https://aws-server-v2.enatega.com/graphql"
+          GRAPHQL_URL ?? "https://grubpae-api-367067097306.europe-west1.run.app/graphql"
         ).catch((err) => {
           console.log("⚠️ Could not get public token for WebSocket:", err.message);
           return null;
@@ -148,7 +148,7 @@ const setupApollo = () => {
 
     // Try to get public token, but don't fail if it's not available yet
     const publicToken = await getValidPublicToken(
-      GRAPHQL_URL ?? "https://aws-server-v2.enatega.com/graphql"
+      GRAPHQL_URL ?? "https://grubpae-api-367067097306.europe-west1.run.app/graphql"
     ).catch((err) => {
       console.log("⚠️ Could not get public token for request:", err.message);
       return null;

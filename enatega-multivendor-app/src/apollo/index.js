@@ -106,7 +106,7 @@ const setupApollo = () => {
         authorization: token ? `Bearer ${token}` : '',
         "bop-auth": publicToken ? `Bearer ${publicToken}` : '',
         nonce: nonce,
-        'user-agent': `EnategaApp/${Platform.OS}`,
+        'user-agent': `GrubPAE/${Platform.OS}`,
         'accept-language': 'en-US',
         'x-platform': Platform.OS
       }

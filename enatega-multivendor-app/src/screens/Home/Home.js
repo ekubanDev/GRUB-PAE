@@ -343,7 +343,7 @@ function Main(props) {
 
                       <Image
                         source={{
-                          uri: 'https://enatega.com/wp-content/uploads/2024/02/pngimg-1.png'
+                          uri: 'https://grubpae.com/assets/app-promo-1.png'
                         }}
                         style={styles().popularMenuImg}
                         resizeMode='contain'
@@ -358,7 +358,7 @@ function Main(props) {
                       </TextDefault>
                       <Image
                         source={{
-                          uri: 'https://enatega.com/wp-content/uploads/2024/02/pngwing-4.png'
+                          uri: 'https://grubpae.com/assets/app-promo-2.png'
                         }}
                         style={styles().popularMenuImg}
                         resizeMode='contain'

@@ -28,12 +28,12 @@ const AppFooter = () => {
     links: [
       {
         label: t("Footer.enategaRider"),
-        link: "https://play.google.com/store/apps/details?id=com.enatega.multirider&hl=en",
+        link: "https://play.google.com/store/apps/details?id=com.tesseract.grubpae.rider",
         internal: false,
       },
       {
         label: t("Footer.enategaRestaurant"),
-        link: "https://play.google.com/store/apps/details?id=multivendor.enatega.restaurant&hl=en",
+        link: "https://play.google.com/store/apps/details?id=com.tesseract.grubpae.store",
         internal: false,
       },
     ],
@@ -61,12 +61,12 @@ const AppFooter = () => {
       },
       {
         label: t("Footer.facebook"),
-        link: "https://www.facebook.com/enatega/",
+        link: "https://www.facebook.com/grubpae/",
         internal: false,
       },
       {
         label: t("Footer.linkedIn"),
-        link: "https://www.linkedin.com/company/enatega/?originalSubdomain=pk",
+        link: "https://www.linkedin.com/company/tesseract-holdings/",
         internal: false,
       },
     ],

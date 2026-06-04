@@ -12,7 +12,7 @@ export const usePublicAccessInit = () => {
     const initPublicAccess = async () => {
       try {
         await fetchPublicAccessToken(
-          GRAPHQL_URL || "https://aws-server.enatega.com/graphql"
+          GRAPHQL_URL || "https://grubpae-api-367067097306.europe-west1.run.app/graphql"
         );
         console.log("✅ Public authentication initialized successfully");
       } catch (error) {

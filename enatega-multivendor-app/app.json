@@ -56,7 +56,7 @@
       "color": "#90E36D",
       "icon": "./assets/not-icon.png",
       "androidMode": "default",
-      "androidCollapsedTitle": "Enatega Multivendor"
+      "androidCollapsedTitle": "GRUB-PAE"
     },
     "android": {
       "versionCode": 118,
@@ -104,13 +104,13 @@
       [
         "expo-updates",
         {
-          "username": "ninjas_code"
+          "username": "REPLACE_WITH_YOUR_EXPO_ACCOUNT"
         }
       ],
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $Enatega Multivendor to use your location."
+          "locationAlwaysAndWhenInUsePermission": "Allow $GRUB-PAE to use your location."
         }
       ],
       "expo-font",
