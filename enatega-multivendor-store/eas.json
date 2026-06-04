@@ -5,7 +5,7 @@
       "channel": "development",
       "distribution": "internal",
       "ios": {
-        "simulator": false
+        "simulator": true
       },
       "android": {
         "buildType": "apk"
@@ -21,13 +21,6 @@
     },
     "production": {
       "channel": "production"
-    },
-    "ios-simulator": {
-      "developmentClient": false,
-      "distribution": "simulator",
-      "ios": {
-        "simulator": true
-      }
     }
   },
   "submit": {
