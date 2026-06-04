@@ -1,0 +1,25 @@
+# Root .easignore — excludes all node_modules across the monorepo
+# EAS archives from the git root which includes all modules
+
+node_modules/
+**/node_modules/
+
+# Vercel build output
+.vercel/output/
+.vercel/
+
+# Web/admin frontend modules (not needed for mobile builds)
+# Comment these out when building web/admin via EAS
+enatega-multivendor-admin/node_modules/
+enatega-multivendor-web/node_modules/
+enatega-multivendor-store/node_modules/
+enatega-multivendor-app/node_modules/
+enatega-multivendor-rider/node_modules/
+enatega-multivendor-api-custom/node_modules/
+
+# Build artifacts
+**/.next/
+**/.expo/
+**/android/
+**/ios/
+**/*.log
