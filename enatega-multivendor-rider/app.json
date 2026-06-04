@@ -4,6 +4,7 @@
     "description": "GRUB-PAE Rider — Delivery management app for Ghana and West Africa by Tesseract Holdings.",
     "version": "1.0.0",
     "slug": "grubpae-rider",
+    "owner": "grub-pae",
     "orientation": "portrait",
     "splash": {
       "image": "./lib/assets/images/black.png",
