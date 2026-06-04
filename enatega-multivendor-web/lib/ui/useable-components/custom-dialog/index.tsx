@@ -12,8 +12,7 @@ export default function CustomDialog({
   showCloseButton = true,
   className = "",
 }: ICustomDialogProps) {
-  // get the RTL direction
-  const direction = document.documentElement.getAttribute("dir") || "ltr";
+  const direction = typeof document !== "undefined" ? document.documentElement.getAttribute("dir") || "ltr" : "ltr";
   return (
     <Dialog
       visible={visible}

@@ -64,7 +64,7 @@ export default function RestaurantDetailsScreen() {
   const selectedCategoryRef = useRef<string>("");
 
   // get the RTL direction
-  const direction = document.documentElement.getAttribute("dir") || "ltr";
+  const direction = typeof document !== "undefined" ? document.documentElement.getAttribute("dir") || "ltr" : "ltr";
 
   // State
   const [filter, setFilter] = useState("");
