@@ -5,8 +5,10 @@ const STORAGE_KEYS = {
   LAST_REFRESH: '_rf8n1',
 } as const;
 
-const MIN_REFRESH_INTERVAL = 5000; // 5 seconds between refresh attempts
-const EXPIRY_BUFFER = 10000; // Start refreshing 10 seconds before expiry
+const MIN_REFRESH_INTERVAL = 5000;
+const EXPIRY_BUFFER = 10000;
+
+const isClient = typeof window !== 'undefined';
 
 function generateRandomKey(): string {
   const array = new Uint8Array(16);
@@ -15,6 +17,7 @@ function generateRandomKey(): string {
 }
 
 export function initializeNonce(): void {
+  if (!isClient) return;
   const existingNonce = localStorage.getItem(STORAGE_KEYS.NONCE);
   if (!existingNonce) {
     const nonce = generateRandomKey();
@@ -23,39 +26,40 @@ export function initializeNonce(): void {
 }
 
 export function getNonce(): string | null {
+  if (!isClient) return null;
   const nonce = localStorage.getItem(STORAGE_KEYS.NONCE);
   if (!nonce) {
     initializeNonce();
-    return getNonce();
+    return localStorage.getItem(STORAGE_KEYS.NONCE);
   }
   return nonce;
 }
 
 export function storeMetricsToken(token: string, expiry: string): void {
+  if (!isClient) return;
   localStorage.setItem(STORAGE_KEYS.METRICS_TOKEN, token);
   localStorage.setItem(STORAGE_KEYS.EXPIRY, expiry);
   localStorage.setItem(STORAGE_KEYS.LAST_REFRESH, Date.now().toString());
 }
 
 export function getMetricsToken(): string | null {
+  if (!isClient) return null;
   return localStorage.getItem(STORAGE_KEYS.METRICS_TOKEN);
 }
 
 export function shouldRefreshToken(): boolean {
+  if (!isClient) return false;
   const token = localStorage.getItem(STORAGE_KEYS.METRICS_TOKEN);
   const expiryStr = localStorage.getItem(STORAGE_KEYS.EXPIRY);
   const lastRefreshStr = localStorage.getItem(STORAGE_KEYS.LAST_REFRESH);
 
-  // No token or expiry - must refresh
   if (!token || !expiryStr) return true;
 
   const expiryTime = new Date(expiryStr).getTime();
   const now = Date.now();
 
-  // Token is fully expired - always refresh
   if (now >= expiryTime) return true;
 
-  // Token is approaching expiry (within buffer) - respect MIN_REFRESH_INTERVAL
   if (now >= expiryTime - EXPIRY_BUFFER) {
     if (!lastRefreshStr) return true;
     const lastRefresh = parseInt(lastRefreshStr, 10);
@@ -66,6 +70,7 @@ export function shouldRefreshToken(): boolean {
 }
 
 export function clearMetricsData(): void {
+  if (!isClient) return;
   localStorage.removeItem(STORAGE_KEYS.NONCE);
   localStorage.removeItem(STORAGE_KEYS.METRICS_TOKEN);
   localStorage.removeItem(STORAGE_KEYS.EXPIRY);
