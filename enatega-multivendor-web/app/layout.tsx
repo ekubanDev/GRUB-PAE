@@ -7,7 +7,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import Script from "next/script";
 
 export const metadata = {
-  title: "Enatega Multivendor",
+  title: "GRUB-PAE",
   manifest: "/manifest.json",
 };
 
@@ -37,12 +37,14 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const theme = localStorage.getItem("theme");
-                if (theme === "dark") {
-                  document.documentElement.classList.add("dark");
-                } else {
-                  document.documentElement.classList.remove("dark");
-                }
+                try {
+                  const theme = typeof localStorage !== 'undefined' ? localStorage.getItem("theme") : null;
+                  if (theme === "dark") {
+                    document.documentElement.classList.add("dark");
+                  } else {
+                    document.documentElement.classList.remove("dark");
+                  }
+                } catch(e) {}
               })();
             `,
           }}
