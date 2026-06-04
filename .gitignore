@@ -82,3 +82,4 @@ google-service-account*.json
 .env
 .env.local
 .env.*.local
+.vercel

@@ -33,21 +33,22 @@ export default function Cart({ onClose }: CartProps) {
   } = useUser();
 
   const { CURRENCY_SYMBOL } = useConfig();
+  const isClient = typeof window !== "undefined";
   const [instructions, setInstructions] = useState(
-    localStorage.getItem("orderInstructions") || ""
+    isClient ? localStorage.getItem("orderInstructions") || "" : ""
   );
   const [showDialog, setShowDialog] = useState<IFood | null>(null);
 
   // retrieve cart-product-store-slug and id from local storage rather than useParams
-  const slug = localStorage.getItem("cart-product-store-slug") || "";
-  const id = localStorage.getItem("cart-product-store-id") || "";
+  const slug = isClient ? localStorage.getItem("cart-product-store-slug") || "" : "";
+  const id = isClient ? localStorage.getItem("cart-product-store-id") || "" : "";
 
   const { data } = useRestaurant(id, decodeURIComponent(slug));
 
   const router = useRouter();
   const t = useTranslations();
   const client = useApolloClient();
-  const shopType = localStorage.getItem("currentShopType");
+  const shopType = isClient ? localStorage.getItem("currentShopType") : null;
 
   // Format subtotal for display
   const formattedSubtotal =

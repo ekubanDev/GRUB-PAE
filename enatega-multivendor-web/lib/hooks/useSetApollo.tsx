@@ -122,8 +122,8 @@ export const useSetupApollo = (): ApolloClient<NormalizedCacheObject> => {
   });
 
   const request = async (operation: Operation): Promise<void> => {
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
     const operationName = operation.operationName;
     if (operationName !== 'MetricsGeneral' && shouldRefreshToken()) {
       await fetchMetricsToken(SERVER_URL);
