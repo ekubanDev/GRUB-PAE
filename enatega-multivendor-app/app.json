@@ -4,7 +4,7 @@
     "scheme": "grubpae",
     "version": "1.0.0",
     "description": "GRUB-PAE — Food delivery for Ghana and West Africa by Tesseract Holdings.",
-    "slug": "grub-pae",
+    "slug": "grubpae-app",
     "owner": "grub-pae",
     "experiments": {
       "buildCacheProvider": "eas"
