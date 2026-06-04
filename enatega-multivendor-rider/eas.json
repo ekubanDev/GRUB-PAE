@@ -15,12 +15,14 @@
       "developmentClient": false,
       "channel": "staging",
       "distribution": "internal",
+      "node": "20.20.0",
       "android": {
         "buildType": "apk"
       }
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+      "node": "20.20.0"
     }
   },
   "submit": {
