@@ -14,10 +14,6 @@ import {
   IZoneMainComponentsProps,
 } from '@/lib/utils/interfaces';
 
-// Context
-import { useConfiguration } from '@/lib/hooks/useConfiguration';
-
-
 // UI Components
 import CustomDialog from '@/lib/ui/useable-components/delete-dialog';
 import Table from '@/lib/ui/useable-components/table';

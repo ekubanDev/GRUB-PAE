@@ -8,8 +8,6 @@ import { useRouter } from 'next/navigation';
 
 // Context
 import { VendorContext } from '@/lib/context/super-admin/vendor.context';
-import { useConfiguration } from '@/lib/hooks/useConfiguration';
-
 // Interface
 import { IVendorCardProps } from '@/lib/utils/interfaces';
 
