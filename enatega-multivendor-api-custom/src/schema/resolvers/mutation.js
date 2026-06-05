@@ -30,7 +30,9 @@ module.exports = {
     if (type === 'default' && email && password) {
       user = await User.findOne({ email: email.toLowerCase() })
       if (!user) throw new Error('No account found with this email')
-      // TODO: add bcrypt password check once bcryptjs is installed
+      if (!user.password) throw new Error('Please use social login or reset your password')
+      const valid = await bcrypt.compare(password, user.password)
+      if (!valid) throw new Error('Incorrect password')
     } else if (type === 'apple' && appleId) {
       user = await User.findOneAndUpdate(
         { appleId },
@@ -50,10 +52,11 @@ module.exports = {
 
   createUser: async (_, { userInput }) => {
     const { phone, email, password, name, notificationToken, appleId, emailIsVerified, isPhoneExists } = userInput
-    const existing = await User.findOne({ $or: [email ? { email } : null, phone ? { phone } : null].filter(Boolean) })
+    const existing = await User.findOne({ $or: [email ? { email: email.toLowerCase() } : null, phone ? { phone } : null].filter(Boolean) })
     if (existing) throw new Error('Account already exists')
 
-    const user = await User.create({ phone, email: email?.toLowerCase(), password, name, notificationToken, appleId, emailIsVerified, phoneIsVerified: isPhoneExists })
+    const hashedPassword = password ? await bcrypt.hash(password, 12) : undefined
+    const user = await User.create({ phone, email: email?.toLowerCase(), password: hashedPassword, name, notificationToken, appleId, emailIsVerified, phoneIsVerified: isPhoneExists })
     const token = issueToken(String(user._id), 'user')
     return { userId: String(user._id), token, tokenExpiration: 30, name: user.name, email: user.email, phone: user.phone }
   },
@@ -61,7 +64,9 @@ module.exports = {
   ownerLogin: async (_, { email, password }) => {
     const user = await User.findOne({ email: email.toLowerCase(), userType: { $in: ['admin', 'vendor'] } })
     if (!user) throw new Error('No admin account found')
-    // TODO: bcrypt password check
+    if (!user.password) throw new Error('Password not set for this account')
+    const valid = await bcrypt.compare(password, user.password)
+    if (!valid) throw new Error('Incorrect password')
     const token = issueToken(String(user._id), user.userType)
     const restaurants = await Restaurant.find({ owner: user._id }).select('_id orderId name image address')
     return { userId: String(user._id), token, tokenExpiration: 30, email: user.email, userType: user.userType, restaurants, name: user.name, image: user.image }
@@ -86,7 +91,12 @@ module.exports = {
 
   changePassword: async (_, { oldPassword, newPassword }, { user }) => {
     requireAuth(user)
-    // TODO: bcrypt verify old password, hash new password
+    const u = await User.findById(user.userId)
+    if (!u?.password) throw new Error('No password set')
+    const valid = await bcrypt.compare(oldPassword, u.password)
+    if (!valid) throw new Error('Incorrect current password')
+    const hashed = await bcrypt.hash(newPassword, 12)
+    await User.findByIdAndUpdate(user.userId, { password: hashed })
     return true
   },
 
@@ -99,7 +109,8 @@ module.exports = {
   },
 
   resetPassword: async (_, { password, email }) => {
-    // TODO: verify reset token, hash new password
+    const hashed = await bcrypt.hash(password, 12)
+    await User.findOneAndUpdate({ email: email.toLowerCase() }, { password: hashed })
     return { result: true }
   },
 

@@ -31,31 +31,56 @@ async function connectDB() {
   await mongoose.connect(process.env.MONGODB_URI)
   console.log('MongoDB connected')
 
-  // Seed Configuration with GRUB-PAE defaults on first boot
   const Configuration = require('./models/Configuration')
-  const existing = await Configuration.findOne()
-  if (!existing) {
-    await Configuration.create({
-      currency: 'GHS',
-      currencySymbol: '₵',
-      deliveryRate: 5,
-      costType: 'fixed',
-      // Firebase Web SDK config for GRUB-PAE project
-      firebaseKey: 'AIzaSyAEWbll-mv0hD9jBZR51wqfVpxxYIilVz8',
-      authDomain: 'grub-pae.firebaseapp.com',
-      projectId: 'grub-pae',
-      storageBucket: 'grub-pae.firebasestorage.app',
-      msgSenderId: '367067097306',
-      appId: '1:367067097306:web:cdb4efc41c792b85499de3',
-      measurementId: 'G-K8WV720K8C',
-      googleApiKey: process.env.GOOGLE_MAPS_API_KEY || '',
-      cloudinaryUploadUrl: process.env.CLOUDINARY_UPLOAD_URL || '',
-      cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '',
-      skipEmailVerification: process.env.NODE_ENV !== 'production',
-      skipMobileVerification: process.env.NODE_ENV !== 'production',
-      testOtp: '123456'
+  const User = require('./models/User')
+  const bcrypt = require('bcryptjs')
+
+  // Seed / update Configuration on every boot
+  await Configuration.findOneAndUpdate(
+    {},
+    {
+      $setOnInsert: {
+        currency: 'GHS',
+        currencySymbol: '₵',
+        deliveryRate: 5,
+        costType: 'fixed',
+        firebaseKey: 'AIzaSyAEWbll-mv0hD9jBZR51wqfVpxxYIilVz8',
+        authDomain: 'grub-pae.firebaseapp.com',
+        projectId: 'grub-pae',
+        storageBucket: 'grub-pae.firebasestorage.app',
+        msgSenderId: '367067097306',
+        appId: '1:367067097306:web:cdb4efc41c792b85499de3',
+        measurementId: 'G-K8WV720K8C',
+        testOtp: '123456'
+      },
+      $set: {
+        googleApiKey: process.env.GOOGLE_MAPS_API_KEY || '',
+        cloudinaryUploadUrl: process.env.CLOUDINARY_UPLOAD_URL || '',
+        cloudinaryApiKey: process.env.CLOUDINARY_API_KEY || '',
+        // Skip OTP until Twilio is configured — admin can turn off via dashboard
+        skipEmailVerification: true,
+        skipMobileVerification: true
+      }
+    },
+    { upsert: true, new: true }
+  )
+  console.log('Configuration seeded/updated')
+
+  // Seed default admin user if none exists
+  const adminExists = await User.findOne({ userType: 'admin' })
+  if (!adminExists) {
+    const adminPassword = process.env.ADMIN_PASSWORD || 'GrubPAE@2024!'
+    const hashed = await bcrypt.hash(adminPassword, 12)
+    await User.create({
+      name: 'GRUB-PAE Admin',
+      email: 'admin@grubpae.com',
+      password: hashed,
+      userType: 'admin',
+      isActive: true,
+      emailIsVerified: true
     })
-    console.log('Configuration seeded with GRUB-PAE defaults')
+    console.log('Admin user created: admin@grubpae.com / ' + adminPassword)
+    console.log('IMPORTANT: Change the admin password after first login.')
   }
 }
 
