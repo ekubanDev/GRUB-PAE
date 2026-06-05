@@ -298,5 +298,17 @@ module.exports = {
   getVendorDashboardGrowthDetailsByYear: async (_, { vendorId, year }, { user }) => {
     requireAuth(user)
     return Array.from({ length: 12 }, () => ({ totalRestaurants: 0, totalOrders: 0, totalSales: 0 }))
+  },
+
+  notifications: async (_, { page = 1 }, { user }) => {
+    requireAuth(user)
+    const Notification = require('../../models/Notification')
+    const limit = 20
+    const skip = (page - 1) * limit
+    const notifications = await Notification.find({ user: user.userId })
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+    return { notifications }
   }
 }
