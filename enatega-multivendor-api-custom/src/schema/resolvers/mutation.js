@@ -69,7 +69,9 @@ module.exports = {
     if (!valid) throw new Error('Incorrect password')
     const token = issueToken(String(user._id), user.userType)
     const restaurants = await Restaurant.find({ owner: user._id }).select('_id orderId name image address')
-    return { userId: String(user._id), token, tokenExpiration: 30, email: user.email, userType: user.userType, restaurants, name: user.name, image: user.image }
+    // Admin frontend expects UPPERCASE userType (ADMIN, VENDOR, RESTAURANT)
+    const userTypeUpper = user.userType.toUpperCase()
+    return { userId: String(user._id), token, tokenExpiration: 30, email: user.email, userType: userTypeUpper, restaurants, name: user.name, image: user.image }
   },
 
   // ─── User ──────────────────────────────────────────────────────────────────
