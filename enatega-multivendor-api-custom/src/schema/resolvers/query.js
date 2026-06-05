@@ -320,6 +320,10 @@ module.exports = {
     return { ...vendor.toObject(), restaurants }
   },
 
+  getCountries: async () => {
+    return []
+  },
+
   notifications: async (_, { page = 1 }, { user }) => {
     requireAuth(user)
     const Notification = require('../../models/Notification')

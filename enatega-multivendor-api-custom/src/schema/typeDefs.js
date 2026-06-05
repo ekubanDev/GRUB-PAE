@@ -19,6 +19,10 @@ const typeDefs = gql`
     permissions: [String]
     userTypeId: String
     image: String
+    picture: String
+    phoneIsVerified: Boolean
+    emailIsVerified: Boolean
+    addresses: [Address]
   }
 
   # ─── Location ────────────────────────────────────────────────────────────────
@@ -790,6 +794,9 @@ const typeDefs = gql`
   }
 
   type Country {
+    _id: ID
+    name: String
+    flag: String
     cities: [City]
   }
 
@@ -823,7 +830,7 @@ const typeDefs = gql`
     # Public / customer
     configuration: Configuration
     nearByRestaurants(latitude: Float, longitude: Float, shopType: String): NearByRestaurantsResult
-    nearByRestaurantsPreview(latitude: Float, longitude: Float, shopType: String): NearByRestaurantsPreviewResult
+    nearByRestaurantsPreview(latitude: Float, longitude: Float, shopType: String, page: Int, limit: Int): NearByRestaurantsPreviewResult
     topRatedVendors(latitude: Float!, longitude: Float!): [Restaurant]
     topRatedVendorsPreview(latitude: Float!, longitude: Float!): [RestaurantPreview]
     recentOrderRestaurants(latitude: Float!, longitude: Float!): [Restaurant]
@@ -843,6 +850,7 @@ const typeDefs = gql`
     subCategories: [SubCategory]
     subCategoriesByParentId(parentCategoryId: String!): [SubCategory]
     getCountryByIso(iso: String!): Country
+    getCountries: [Country]
     fetchCategoryDetailsByStoreIdForMobile(storeId: String!): [CategoryDetails]
     popularFoodItems(restaurantId: String!): [Food]
     popularItems(restaurantId: String!): [PopularItemCount]
@@ -895,7 +903,7 @@ const typeDefs = gql`
 
   type Mutation {
     # Auth
-    login(email: String, password: String, type: String!, appleId: String, name: String, notificationToken: String): AuthData
+    login(email: String, password: String, type: String!, appleId: String, name: String, notificationToken: String, isActive: Boolean): AuthData
     createUser(userInput: UserInput!): AuthData
     ownerLogin(email: String!, password: String!): AuthData
 

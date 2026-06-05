@@ -46,8 +46,16 @@ module.exports = {
     if (!user.isActive) throw new Error('Account is deactivated')
     if (notificationToken) await User.findByIdAndUpdate(user._id, { notificationToken })
 
+    const fullUser = await User.findById(user._id)
     const token = issueToken(String(user._id), 'user')
-    return { userId: String(user._id), token, tokenExpiration: 30, name: user.name, email: user.email, phone: user.phone, isActive: user.isActive }
+    return {
+      userId: String(user._id), token, tokenExpiration: 30,
+      name: user.name, email: user.email, phone: user.phone,
+      isActive: user.isActive, isNewUser: false,
+      phoneIsVerified: fullUser?.phoneIsVerified ?? false,
+      emailIsVerified: fullUser?.emailIsVerified ?? false,
+      addresses: fullUser?.addresses ?? [],
+    }
   },
 
   createUser: async (_, { userInput }) => {
@@ -58,7 +66,14 @@ module.exports = {
     const hashedPassword = password ? await bcrypt.hash(password, 12) : undefined
     const user = await User.create({ phone, email: email?.toLowerCase(), password: hashedPassword, name, notificationToken, appleId, emailIsVerified, phoneIsVerified: isPhoneExists })
     const token = issueToken(String(user._id), 'user')
-    return { userId: String(user._id), token, tokenExpiration: 30, name: user.name, email: user.email, phone: user.phone }
+    return {
+      userId: String(user._id), token, tokenExpiration: 30,
+      name: user.name, email: user.email, phone: user.phone,
+      isActive: user.isActive, isNewUser: true,
+      phoneIsVerified: user.phoneIsVerified ?? false,
+      emailIsVerified: user.emailIsVerified ?? false,
+      addresses: user.addresses ?? [],
+    }
   },
 
   ownerLogin: async (_, { email, password }) => {
