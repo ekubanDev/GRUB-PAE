@@ -300,6 +300,26 @@ module.exports = {
     return Array.from({ length: 12 }, () => ({ totalRestaurants: 0, totalOrders: 0, totalSales: 0 }))
   },
 
+  vendors: async (_, { page = 1, rows = 50, search }, { user }) => {
+    requireAuth(user)
+    const query = { userType: { $in: ['vendor', 'admin'] } }
+    if (search) query.name = { $regex: search, $options: 'i' }
+    const skip = (page - 1) * rows
+    const vendorUsers = await User.find(query).skip(skip).limit(rows)
+    return Promise.all(vendorUsers.map(async v => {
+      const restaurants = await Restaurant.find({ owner: v._id })
+      return { ...v.toObject(), restaurants }
+    }))
+  },
+
+  restaurantByOwner: async (_, { id }, { user }) => {
+    requireAuth(user)
+    const vendor = await User.findById(id)
+    if (!vendor) return null
+    const restaurants = await Restaurant.find({ owner: id })
+    return { ...vendor.toObject(), restaurants }
+  },
+
   notifications: async (_, { page = 1 }, { user }) => {
     requireAuth(user)
     const Notification = require('../../models/Notification')

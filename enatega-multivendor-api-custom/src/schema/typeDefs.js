@@ -867,6 +867,7 @@ const typeDefs = gql`
     riders(page: Int, rows: Int): [Rider]
     coupons: [Coupon]
     vendors(page: Int, rows: Int, search: String): [Vendor]
+    restaurantByOwner(id: String): Vendor
     vendorsByRestaurant(restaurantId: ID!): [Vendor]
     supportTickets: [SupportTicket]
     withdrawRequests: [WithdrawRequest]
@@ -1068,7 +1069,7 @@ const typeDefs = gql`
     image: String
     userType: String
     isActive: Boolean
-    restaurants: [RestaurantInfo]
+    restaurants: [Restaurant]
   }
 
   type Earning {

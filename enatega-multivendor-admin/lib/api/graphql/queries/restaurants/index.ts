@@ -136,7 +136,6 @@ export const GET_RESTAURANTS_BY_OWNER = gql`
       email
       userType
       restaurants {
-        unique_restaurant_id
         _id
         orderId
         orderPrefix
@@ -148,14 +147,8 @@ export const GET_RESTAURANTS_BY_OWNER = gql`
         deliveryTime
         minimumOrder
         username
-        password
         location {
           coordinates
-        }
-        deliveryInfo {
-          minDeliveryFee
-          deliveryDistance
-          deliveryFee
         }
         openingTimes {
           day
