@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const UPLOAD_TOKEN = gql`
-  mutation UploadToken($id: String!, $pushToken: String!) {
-    uploadToken(id: $id, pushToken: $pushToken) {
+  mutation UploadToken($token: String!) {
+    pushToken(token: $token) {
       _id
-      pushToken
+      notificationToken
     }
   }
 `;

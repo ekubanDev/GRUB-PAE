@@ -85,7 +85,7 @@ const Layout = ({ children }: IProvider) => {
             client
               .mutate({
                 mutation: UPLOAD_TOKEN,
-                variables: { id: user?.userId, pushToken: token },
+                variables: { token },
               })
               .then(() => console.log('📡 Token uploaded successfully'))
               .catch((error) => console.error('🔥 Upload token error:', error));
