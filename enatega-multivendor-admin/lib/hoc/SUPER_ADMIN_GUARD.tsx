@@ -1,6 +1,6 @@
 'use client';
 // Core
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 // Hooks
@@ -18,14 +18,19 @@ const SUPER_ADMIN_GUARD = <T extends object>(
     const router = useRouter();
     const { user } = useUserContext();
 
+    // Check localStorage synchronously on mount — avoids firing authenticated
+    // queries before we know the session state.
+    const [isLoggedIn] = useState<boolean>(() => {
+      if (typeof window === 'undefined') return false;
+      return !!onUseLocalStorage('get', `user-${APP_NAME}`);
+    });
+
     useEffect(() => {
-      // Check if logged in
-      const isLoggedIn = !!onUseLocalStorage('get', `user-${APP_NAME}`);
       if (!isLoggedIn) {
         router.replace('/authentication/login');
+        return;
       }
 
-      // To find the name of path as per saved in db i.e /management/commission-rates => Commision Rates
       const findRouteName = ROUTES.find((v) => v.route === pathname);
 
       // For STAFF permissions
@@ -36,7 +41,6 @@ const SUPER_ADMIN_GUARD = <T extends object>(
         Array.isArray(user.permissions)
       ) {
         const allowed = user?.permissions?.includes(findRouteName?.text);
-
         if (!allowed) {
           router.replace('/forbidden');
         }
@@ -46,7 +50,9 @@ const SUPER_ADMIN_GUARD = <T extends object>(
       if (user?.userType === 'RESTAURANT' || user?.userType === 'VENDOR') {
         router.replace('/forbidden');
       }
-    }, []);
+    }, [isLoggedIn]);
+
+    if (!isLoggedIn) return null;
 
     return <Component {...props} />;
   };

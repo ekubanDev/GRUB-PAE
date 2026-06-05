@@ -101,9 +101,10 @@ const AppTopbar = () => {
     useContext<LayoutContextProps>(LayoutContext);
   const { user, setUser } = useUserContext();
 
-  // Query
+  // Query — only run when the user is authenticated
   const { loading } = useQuery(GET_WEB_NOTIFICATIONS, {
     fetchPolicy: 'network-only',
+    skip: !user,
     onCompleted: (data) => {
       setNotifications(data?.notifications?.notifications ?? []);
     },
