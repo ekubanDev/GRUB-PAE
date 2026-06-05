@@ -858,7 +858,7 @@ const typeDefs = gql`
     userFavourite(latitude: Float, longitude: Float): [Restaurant]
     users: [User]
 
-    # Admin
+    # Admin — legacy
     getDashboardTotal(endingDate: String, startingDate: String, restaurant: String): DashboardTotal
     getDashboardSales(endingDate: String, startingDate: String, restaurant: String): [DashboardSale]
     getDashboardOrders(endingDate: String, startingDate: String, restaurant: String): [DashboardOrder]
@@ -875,6 +875,19 @@ const typeDefs = gql`
     earnings(restaurant: String, startingDate: String, endingDate: String): EarningsResult
     auditLogs: [AuditLog]
     appVersions: AppVersionsData
+
+    # Admin — new dashboard queries
+    getDashboardUsers: DashboardUsers
+    getDashboardUsersByYear(year: Int!): DashboardUsersByYear
+    getDashboardOrdersByType: [DashboardTypeValue]
+    getDashboardSalesByType: [DashboardTypeValue]
+    getRestaurantDashboardOrdersSalesStats(restaurant: String!, starting_date: String!, ending_date: String!, dateKeyword: String): RestaurantOrdersSalesStats
+    getRestaurantDashboardSalesOrderCountDetailsByYear(restaurant: String!, year: Int!): [RestaurantSalesOrderCountByYear]
+    getDashboardOrderSalesDetailsByPaymentMethod(restaurant: String!, starting_date: String!, ending_date: String!): DashboardOrderSalesByPaymentMethod
+    getStoreDetailsByVendorId(id: String!, dateKeyword: String, starting_date: String, ending_date: String): StoreDetailsByVendor
+    getVendorDashboardStatsCardDetails(vendorId: String!, dateKeyword: String, starting_date: String!, ending_date: String!): VendorDashboardStats
+    getLiveMonitorData(id: String!, dateKeyword: String, starting_date: String, ending_date: String): VendorLiveMonitor
+    getVendorDashboardGrowthDetailsByYear(vendorId: String!, year: Int!): [VendorGrowthByYear]
   }
 
   # ─── Mutations ───────────────────────────────────────────────────────────────
@@ -1100,6 +1113,94 @@ const typeDefs = gql`
   type PopularItemCount {
     id: ID
     count: Int
+  }
+
+  # ─── Admin dashboard types (new admin schema) ────────────────────────────────
+
+  type DashboardUsers {
+    usersCount: Int
+    vendorsCount: Int
+    restaurantsCount: Int
+    ridersCount: Int
+  }
+
+  type DashboardUserPercentageChange {
+    usersPercent: Float
+    vendorsPercent: Float
+    restaurantsPercent: Float
+    ridersPercent: Float
+  }
+
+  type DashboardUsersByYear {
+    usersCount: Int
+    vendorsCount: Int
+    restaurantsCount: Int
+    ridersCount: Int
+    percentageChange: DashboardUserPercentageChange
+  }
+
+  type DashboardTypeValue {
+    value: Float
+    label: String
+  }
+
+  type RestaurantOrdersSalesStats {
+    totalOrders: Int
+    totalSales: Float
+    totalCODOrders: Int
+    totalCardOrders: Int
+  }
+
+  type RestaurantSalesOrderCountByYear {
+    salesAmount: Float
+    ordersCount: Int
+  }
+
+  type PaymentMethodData {
+    _type: String
+    data: PaymentMethodDataDetail
+  }
+
+  type PaymentMethodDataDetail {
+    total_orders: Int
+    total_sales: Float
+    total_sales_without_delivery: Float
+    total_delivery_fee: Float
+  }
+
+  type DashboardOrderSalesByPaymentMethod {
+    all: PaymentMethodData
+    cod: PaymentMethodData
+    card: PaymentMethodData
+  }
+
+  type StoreDetailsByVendor {
+    _id: ID
+    totalOrders: Int
+    restaurantName: String
+    totalSales: Float
+    pickUpCount: Int
+    deliveryCount: Int
+  }
+
+  type VendorDashboardStats {
+    totalRestaurants: Int
+    totalOrders: Int
+    totalSales: Float
+    totalDeliveries: Int
+  }
+
+  type VendorLiveMonitor {
+    online_stores: Int
+    cancelled_orders: Int
+    delayed_orders: Int
+    ratings: Float
+  }
+
+  type VendorGrowthByYear {
+    totalRestaurants: Int
+    totalOrders: Int
+    totalSales: Float
   }
 `
 

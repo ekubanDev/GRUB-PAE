@@ -169,5 +169,134 @@ module.exports = {
   users: async (_, __, { user }) => {
     requireAuth(user)
     return User.find()
+  },
+
+  // ─── Admin new dashboard queries ───────────────────────────────────────────
+
+  getDashboardUsers: async (_, __, { user }) => {
+    requireAuth(user)
+    const [usersCount, restaurantsCount, ridersCount, vendorsCount] = await Promise.all([
+      User.countDocuments({ userType: { $in: ['default', 'user'] } }),
+      Restaurant.countDocuments({ isActive: true }),
+      Rider.countDocuments({ isActive: true }),
+      User.countDocuments({ userType: { $in: ['vendor', 'admin'] } })
+    ])
+    return { usersCount, vendorsCount, restaurantsCount, ridersCount }
+  },
+
+  getDashboardUsersByYear: async (_, { year }, { user }) => {
+    requireAuth(user)
+    const start = new Date(year, 0, 1)
+    const end = new Date(year + 1, 0, 1)
+    const [usersCount, restaurantsCount, ridersCount, vendorsCount] = await Promise.all([
+      User.countDocuments({ userType: { $in: ['default', 'user'] }, createdAt: { $gte: start, $lt: end } }),
+      Restaurant.countDocuments({ createdAt: { $gte: start, $lt: end } }),
+      Rider.countDocuments({ createdAt: { $gte: start, $lt: end } }),
+      User.countDocuments({ userType: 'vendor', createdAt: { $gte: start, $lt: end } })
+    ])
+    return {
+      usersCount, vendorsCount, restaurantsCount, ridersCount,
+      percentageChange: { usersPercent: 0, vendorsPercent: 0, restaurantsPercent: 0, ridersPercent: 0 }
+    }
+  },
+
+  getDashboardOrdersByType: async (_, __, { user }) => {
+    requireAuth(user)
+    const statuses = ['PENDING', 'ACCEPTED', 'ASSIGNED', 'PICKED', 'DELIVERED', 'CANCELLED']
+    const results = await Promise.all(
+      statuses.map(async s => ({
+        label: s,
+        value: await Order.countDocuments({ orderStatus: s })
+      }))
+    )
+    return results
+  },
+
+  getDashboardSalesByType: async (_, __, { user }) => {
+    requireAuth(user)
+    const pipeline = [
+      { $match: { orderStatus: 'DELIVERED' } },
+      { $group: { _id: '$paymentMethod', value: { $sum: '$orderAmount' } } },
+      { $project: { label: '$_id', value: 1, _id: 0 } }
+    ]
+    return Order.aggregate(pipeline)
+  },
+
+  getRestaurantDashboardOrdersSalesStats: async (_, { restaurant, starting_date, ending_date }, { user }) => {
+    requireAuth(user)
+    const match = {
+      restaurant,
+      createdAt: { $gte: new Date(starting_date), $lte: new Date(ending_date) }
+    }
+    const [totalOrders, salesData] = await Promise.all([
+      Order.countDocuments(match),
+      Order.aggregate([{ $match: { ...match, orderStatus: 'DELIVERED' } }, { $group: { _id: null, total: { $sum: '$orderAmount' } } }])
+    ])
+    return {
+      totalOrders,
+      totalSales: salesData[0]?.total || 0,
+      totalCODOrders: await Order.countDocuments({ ...match, paymentMethod: 'COD' }),
+      totalCardOrders: await Order.countDocuments({ ...match, paymentMethod: { $in: ['PAYSTACK', 'CARD'] } })
+    }
+  },
+
+  getRestaurantDashboardSalesOrderCountDetailsByYear: async (_, { restaurant, year }, { user }) => {
+    requireAuth(user)
+    const months = Array.from({ length: 12 }, (_, i) => ({
+      salesAmount: 0,
+      ordersCount: 0
+    }))
+    return months
+  },
+
+  getDashboardOrderSalesDetailsByPaymentMethod: async (_, args, { user }) => {
+    requireAuth(user)
+    const empty = { _type: 'all', data: { total_orders: 0, total_sales: 0, total_sales_without_delivery: 0, total_delivery_fee: 0 } }
+    return { all: { ...empty, _type: 'all' }, cod: { ...empty, _type: 'cod' }, card: { ...empty, _type: 'card' } }
+  },
+
+  getStoreDetailsByVendorId: async (_, { id }, { user }) => {
+    requireAuth(user)
+    const restaurant = await Restaurant.findOne({ owner: id })
+    if (!restaurant) return null
+    const totalOrders = await Order.countDocuments({ restaurant: restaurant._id })
+    const sales = await Order.aggregate([
+      { $match: { restaurant: restaurant._id, orderStatus: 'DELIVERED' } },
+      { $group: { _id: null, total: { $sum: '$orderAmount' } } }
+    ])
+    return {
+      _id: restaurant._id,
+      restaurantName: restaurant.name,
+      totalOrders,
+      totalSales: sales[0]?.total || 0,
+      pickUpCount: await Order.countDocuments({ restaurant: restaurant._id, isPickedUp: true }),
+      deliveryCount: await Order.countDocuments({ restaurant: restaurant._id, isPickedUp: false })
+    }
+  },
+
+  getVendorDashboardStatsCardDetails: async (_, { vendorId }, { user }) => {
+    requireAuth(user)
+    const restaurants = await Restaurant.find({ owner: vendorId })
+    const restaurantIds = restaurants.map(r => r._id)
+    const [totalOrders, salesData] = await Promise.all([
+      Order.countDocuments({ restaurant: { $in: restaurantIds } }),
+      Order.aggregate([{ $match: { restaurant: { $in: restaurantIds }, orderStatus: 'DELIVERED' } }, { $group: { _id: null, total: { $sum: '$orderAmount' } } }])
+    ])
+    return {
+      totalRestaurants: restaurants.length,
+      totalOrders,
+      totalSales: salesData[0]?.total || 0,
+      totalDeliveries: await Order.countDocuments({ restaurant: { $in: restaurantIds }, orderStatus: 'DELIVERED' })
+    }
+  },
+
+  getLiveMonitorData: async (_, { id }, { user }) => {
+    requireAuth(user)
+    return { online_stores: 0, cancelled_orders: 0, delayed_orders: 0, ratings: 0 }
+  },
+
+  getVendorDashboardGrowthDetailsByYear: async (_, { vendorId, year }, { user }) => {
+    requireAuth(user)
+    return Array.from({ length: 12 }, () => ({ totalRestaurants: 0, totalOrders: 0, totalSales: 0 }))
   }
 }
