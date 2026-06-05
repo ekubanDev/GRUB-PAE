@@ -33,6 +33,14 @@ module.exports = {
       if (!user.password) throw new Error('Please use social login or reset your password')
       const valid = await bcrypt.compare(password, user.password)
       if (!valid) throw new Error('Incorrect password')
+    } else if (type === 'google' && email) {
+      const existing = await User.findOne({ email: email.toLowerCase() })
+      if (existing) {
+        user = existing
+      } else {
+        user = await User.create({ name, email: email.toLowerCase(), isActive: true, emailIsVerified: true })
+        user._isNew = true
+      }
     } else if (type === 'apple' && appleId) {
       user = await User.findOneAndUpdate(
         { appleId },
@@ -51,7 +59,7 @@ module.exports = {
     return {
       userId: String(user._id), token, tokenExpiration: 30,
       name: user.name, email: user.email, phone: user.phone,
-      isActive: user.isActive, isNewUser: false,
+      isActive: user.isActive, isNewUser: !!user._isNew,
       phoneIsVerified: fullUser?.phoneIsVerified ?? false,
       emailIsVerified: fullUser?.emailIsVerified ?? false,
       addresses: fullUser?.addresses ?? [],
