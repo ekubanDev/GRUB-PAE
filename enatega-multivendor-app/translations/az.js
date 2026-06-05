@@ -283,7 +283,7 @@ export const az = {
     useCurrentLocation: 'Cari Məkanı İstifadə Et',
     locationPermissionMessage:
       'Bu mesajı vurun ki, Parametrlər açılsın, sonra tətbiqin məkan icazəsindən istifadə etməsinə icazə verin.',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'Yaxınlıqdakı restoranları tapmaq üçün sadəcə məkanınıza ehtiyacımız var',
     selectAnotherLocation: 'Məkanı Əl ilə Təyin Et',
     setLocation: 'Məkanı Təyin Et',

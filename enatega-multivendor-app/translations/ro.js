@@ -283,7 +283,7 @@ export const ro = {
     useCurrentLocation: 'Folosiți locația curentă',
     locationPermissionMessage:
       'Atingeți acest mesaj pentru a deschide Setările, apoi permiteți aplicației să utilizeze locația din permisiuni.',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'Pentru a găsi restaurante în apropierea dumneavoastră, avem nevoie doar de locația dumneavoastră',
     selectAnotherLocation: 'Setați locația manual',
     setLocation: 'Setați locația',

@@ -287,7 +287,7 @@ export const en = {
   useCurrentLocation: 'Use Current Location',
   locationPermissionMessage:
     'Tap on this message to open Settings then allow app to use location from permissions.',
-  enategaUseYourLocationMessage:
+  grubPaeUseYourLocationMessage:
     'To find restaurants near you, we just need your location',
   selectAnotherLocation: 'Set Location Manually',
   setLocation: 'Set Location',

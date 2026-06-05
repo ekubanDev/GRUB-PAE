@@ -7,13 +7,13 @@ importScripts(
 );
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyDx_iSQ9LroTF7NMm20aRvw2wJqhwSnJ3U',
-  authDomain: 'enatega-multivender-web.firebaseapp.com',
-  projectId: 'enatega-multivender-web',
-  storageBucket: 'enatega-multivender-web.firebasestorage.app',
-  messagingSenderId: '438532750182',
-  appId: '1:438532750182:web:516b850eff4e0349f0a6a7',
-  measurementId: 'G-KLBJSEHRYQ',
+  apiKey: 'AIzaSyAEWbll-mv0hD9jBZR51wqfVpxxYIilVz8',
+  authDomain: 'grub-pae.firebaseapp.com',
+  projectId: 'grub-pae',
+  storageBucket: 'grub-pae.firebasestorage.app',
+  messagingSenderId: '367067097306',
+  appId: '1:367067097306:web:cdb4efc41c792b85499de3',
+  measurementId: 'G-K8WV720K8C',
 });
 
 const messaging = firebase.messaging();

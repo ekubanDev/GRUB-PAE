@@ -265,7 +265,7 @@ export const it = {
   currentLocation: 'Posizione Attuale',
   useCurrentLocation: 'Usa Posizione Attuale',
   locationPermissionMessage: "Tocca questo messaggio per aprire le Impostazioni e permetti all'app di usare la posizione.",
-  enategaUseYourLocationMessage: 'Per trovare ristoranti vicino a te, abbiamo bisogno della tua posizione',
+  grubPaeUseYourLocationMessage: 'Per trovare ristoranti vicino a te, abbiamo bisogno della tua posizione',
   selectAnotherLocation: 'Imposta Posizione Manualmente',
   setLocation: 'Imposta Posizione',
   cartIsEmpty: 'Il carrello è vuoto',

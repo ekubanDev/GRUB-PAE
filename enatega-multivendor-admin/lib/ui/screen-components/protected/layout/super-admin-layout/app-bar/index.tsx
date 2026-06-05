@@ -70,12 +70,8 @@ import { TLocale } from '@/lib/utils/types/locale';
 import { setUserLocale } from '@/lib/utils/methods/locale';
 
 // GraphQL
-import { useMutation, useQuery, useSubscription } from '@apollo/client';
-import { RIDER_UPDATED_SUBSCRIPTION } from '@/lib/api/graphql/subscription/rider-subscription';
-import {
-  GET_WEB_NOTIFICATIONS,
-  MARK_WEB_NOTIFICATIONS_AS_READ,
-} from '@/lib/api/graphql';
+import { useQuery } from '@apollo/client';
+import { GET_WEB_NOTIFICATIONS } from '@/lib/api/graphql';
 import ThemeToggle from '@/lib/ui/useable-components/theme-button';
 
 const AppTopbar = () => {
@@ -106,33 +102,15 @@ const AppTopbar = () => {
   const { user, setUser } = useUserContext();
 
   // Query
-  const { loading, refetch } = useQuery(GET_WEB_NOTIFICATIONS, {
+  const { loading } = useQuery(GET_WEB_NOTIFICATIONS, {
     fetchPolicy: 'network-only',
     onCompleted: (data) => {
-      setNotifications(data?.webNotifications);
-    },
-  });
-
-  // Subscriptions
-  useSubscription(RIDER_UPDATED_SUBSCRIPTION, {
-    fetchPolicy: 'network-only',
-    onData: async () => {
-      const result = await refetch();
-      setNotifications(result?.data?.webNotifications);
-    },
-  });
-
-  // Mutation
-  const [markAllAsRead] = useMutation(MARK_WEB_NOTIFICATIONS_AS_READ, {
-    refetchQueries: [{ query: GET_WEB_NOTIFICATIONS }],
-    onCompleted: (data) => {
-      setNotifications(data?.markWebNotificationsAsRead);
+      setNotifications(data?.notifications?.notifications ?? []);
     },
   });
 
   // Handlers
   const toggleDropdown = () => {
-    markAllAsRead();
     setIsNtfnOpen((prevState) => !prevState);
   };
 
@@ -321,9 +299,8 @@ const AppTopbar = () => {
                         ? 'text-black dark:text-white'
                         : 'text-[#484848] dark:hover:text-white dark:text-dark-950 bg-secondary-color'
                         } hover:bg-gray-300 dark:hover:bg-dark-600`}
-                      href={`${notification.navigateTo}`}
+                      href="#"
                       onClick={() => {
-                        markAllAsRead();
                         setIsNtfnOpen(false);
                       }}
                     >

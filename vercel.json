@@ -1,0 +1,9 @@
+{
+  "experimentalServices": {
+    "enatega-multivendor-api-custom": {
+      "root": "enatega-multivendor-api-custom",
+      "entrypoint": "src/index.js",
+      "routePrefix": "/"
+    }
+  }
+}

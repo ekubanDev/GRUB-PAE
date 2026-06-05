@@ -12,12 +12,11 @@ export const SEND_NOTIFICATION_USER = gql`
   }
 `;
 
-export const MARK_WEB_NOTIFICATIONS_AS_READ = gql`
-  mutation MarkWebNotificationsAsRead {
-    markWebNotificationsAsRead {
+export const MARK_NOTIFICATION_READ = gql`
+  mutation MarkNotificationRead($id: ID!) {
+    markNotificationRead(id: $id) {
       _id
       body
-      navigateTo
       read
       createdAt
     }

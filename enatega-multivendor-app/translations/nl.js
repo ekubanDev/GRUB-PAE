@@ -283,7 +283,7 @@ export const nl = {
     useCurrentLocation: 'Gebruik Huidige Locatie',
     locationPermissionMessage:
       'Tik op dit bericht om Instellingen te openen en de app toestemming te geven om je locatie te gebruiken.',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'Om restaurants bij jou in de buurt te vinden, hebben we alleen je locatie nodig',
     selectAnotherLocation: 'Locatie Handmatig Instellen',
     setLocation: 'Locatie Instellen',

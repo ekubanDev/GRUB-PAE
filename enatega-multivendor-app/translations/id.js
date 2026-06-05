@@ -265,7 +265,7 @@ export const id = {
     currentLocation: 'Lokasi Saat Ini',
     useCurrentLocation: 'Gunakan Lokasi Saat Ini',
     locationPermissionMessage: 'Ketuk pesan ini untuk membuka Pengaturan, lalu izinkan aplikasi untuk menggunakan lokasi dari izin.',
-    enategaUseYourLocationMessage: 'Untuk menemukan restoran di dekat Anda, kami hanya membutuhkan lokasi Anda',
+    grubPaeUseYourLocationMessage: 'Untuk menemukan restoran di dekat Anda, kami hanya membutuhkan lokasi Anda',
     selectAnotherLocation: 'Atur Lokasi Secara Manual',
     setLocation: 'Atur Lokasi',
     cartIsEmpty: 'Keranjang kosong',

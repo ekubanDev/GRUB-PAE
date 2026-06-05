@@ -288,7 +288,7 @@ secureAccountWithPhone: 'Wir verwenden Ihre Nummer nur, wenn wir Sie bezüglich 
   useCurrentLocation: 'aktuellen Standort verwenden',
   locationPermissionMessage:
     'Tippen Sie auf diese Nachricht, um die Einstellungen zu öffnen und der App die Verwendung des Standorts zu erlauben.',
-  enategaUseYourLocationMessage:
+  grubPaeUseYourLocationMessage:
     'Yalla verwendet Ihren Standort, um die Restaurants in Ihrer Nähe anzuzeigen!',
   selectAnotherLocation: 'Wählen Sie einen anderen Ort aus',
   setLocation: 'Standort festlegen',

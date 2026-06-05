@@ -59,7 +59,6 @@ export default function VendorCard({
     useContext(VendorContext);
   const { onSetVendorFormVisible } = useContext(VendorContext);
   const { showToast } = useContext(ToastContext);
-  const { ISPAID_VERSION } = useConfiguration();
 
   // States
   const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
@@ -107,17 +106,8 @@ export default function VendorCard({
   // API Hanlders
   const onHandleConfirmDeleteVendor = async () => {
     try {
-      if (ISPAID_VERSION) {
-        await deleteVendor({ variables: { id: vendorId } });
-        setDeletePopupOpen(false);
-      } else {
-        setDeletePopupOpen(false);
-        showToast({
-          type: 'error',
-          title: t('You are using free version'),
-          message: t('This Feature is only Available in Paid Version'),
-        });
-      }
+      await deleteVendor({ variables: { id: vendorId } });
+      setDeletePopupOpen(false);
     } catch (error) {
       showToast({
         type: 'error',

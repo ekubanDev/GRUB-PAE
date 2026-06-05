@@ -429,7 +429,7 @@ export const ru ={
     currentLocation: 'Текущее местоположение',
     useCurrentLocation: 'Использовать текущее местоположение',
     locationPermissionMessage: 'Нажмите на это сообщение, чтобы открыть настройки и разрешить приложению использовать местоположение.',
-    enategaUseYourLocationMessage: 'Чтобы найти рестораны рядом с вами, нам нужно ваше местоположение',
+    grubPaeUseYourLocationMessage: 'Чтобы найти рестораны рядом с вами, нам нужно ваше местоположение',
     setLocation: 'Установить местоположение',
     cartIsEmpty: 'Корзина пуста',
     favouritelistUpdated: 'Список избранного обновлен',

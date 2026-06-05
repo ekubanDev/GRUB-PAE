@@ -429,7 +429,7 @@ export const pt = {
     currentLocation: 'Localização Atual',
     useCurrentLocation: 'Usar Localização Atual',
     locationPermissionMessage: 'Toque nesta mensagem para abrir Configurações e permitir que o aplicativo use a localização nas permissões.',
-    enategaUseYourLocationMessage: 'Para encontrar restaurantes perto de você, precisamos da sua localização',
+    grubPaeUseYourLocationMessage: 'Para encontrar restaurantes perto de você, precisamos da sua localização',
     setLocation: 'Definir Localização',
     cartIsEmpty: 'O carrinho está vazio',
     favouritelistUpdated: 'Lista de favoritos atualizada',

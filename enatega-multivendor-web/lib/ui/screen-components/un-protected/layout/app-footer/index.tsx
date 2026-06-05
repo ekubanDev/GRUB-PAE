@@ -14,8 +14,8 @@ const AppFooter = () => {
     pathname?.endsWith("/discovery") ||
     pathname?.endsWith("/store");
 
-  const partnerWithEnatega = {
-    title: t("Footer.partnerWithEnatega"),
+  const partnerWithGrubPae = {
+    title: t("Footer.partnerWithGRUB-PAE"),
     links: [
       { label: t("Footer.home"), link: "/", internal: true },
       { label: t("Footer.forRiders"), link: "/rider", internal: true },
@@ -27,12 +27,12 @@ const AppFooter = () => {
     title: t("Footer.products"),
     links: [
       {
-        label: t("Footer.enategaRider"),
+        label: t("Footer.grubPaeRider"),
         link: "https://play.google.com/store/apps/details?id=com.tesseract.grubpae.rider",
         internal: false,
       },
       {
-        label: t("Footer.enategaRestaurant"),
+        label: t("Footer.grubPaeRestaurant"),
         link: "https://play.google.com/store/apps/details?id=com.tesseract.grubpae.store",
         internal: false,
       },
@@ -83,7 +83,7 @@ const AppFooter = () => {
             <AppLinks />
           </div>
           <div className="p-2">
-            <FooterLinks section={partnerWithEnatega} />
+            <FooterLinks section={partnerWithGrubPae} />
           </div>
           <div className="p-2">
             <FooterLinks section={products} />

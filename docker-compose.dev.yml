@@ -104,6 +104,6 @@ services:
     networks:
       - grubpae-dev
 
-# Mobile apps (enatega-multivendor-app, enatega-multivendor-rider, enatega-multivendor-store)
+# Mobile apps (grub-pae-app, grub-pae-rider, grub-pae-store modules)
 # run natively via Expo — do NOT containerize them.
 # Run with: cd enatega-multivendor-app && npx expo start

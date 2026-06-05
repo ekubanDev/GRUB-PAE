@@ -271,7 +271,7 @@ export const zh = {
   useCurrentLocation: '使用当前位置',
   locationPermissionMessage:
     '点击此消息打开设置，然后允许应用程序使用位置权限。',
-  enategaUseYourLocationMessage: 'Yalla使用您的位置显示附近的餐馆！',
+  grubPaeUseYourLocationMessage: 'Yalla使用您的位置显示附近的餐馆！',
   selectAnotherLocation: '选择其他位置',
   setLocation: '设置位置',
   cartIsEmpty: '购物车是空的',

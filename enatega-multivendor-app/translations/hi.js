@@ -283,7 +283,7 @@ export const hi = {
     useCurrentLocation: 'मेरा वर्तमान स्थान उपयोग करें',
     locationPermissionMessage:
       'सेटिंग्स खोलने के लिए इस संदेश पर टैप करें फिर अनुमतियों से ऐप को स्थान का उपयोग करने की अनुमति दें।',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'आपके निकट रेस्तरां खोजने के लिए, हमें बस आपके स्थान की आवश्यकता है',
     selectAnotherLocation: 'स्थान मैन्युअल रूप से सेट करें',
     setLocation: 'स्थान सेट करें',

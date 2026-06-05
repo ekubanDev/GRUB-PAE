@@ -44,7 +44,6 @@ export default function ZoneMain({
   // Hooks
   const t = useTranslations();
   const { showToast } = useToast();
-  const { ISPAID_VERSION } = useConfiguration()
   // State - Table
   const [deleteId, setDeleteId] = useState('');
   const [selectedProducts, setSelectedProducts] = useState<IZoneResponse[]>([]);
@@ -96,28 +95,18 @@ export default function ZoneMain({
   ];
 
   const handleDeleteZone = async () => {
-    if (ISPAID_VERSION) {
-      await mutateDelete({
-        variables: { id: deleteId },
-        onCompleted: () => {
-          showToast({
-            type: 'success',
-            title: t('Delete Zone'),
-            message: t('Zone has been deleted successfully'),
-            duration: 3000,
-          });
-          setDeleteId('');
-        },
-      });
-    } else {
-      showToast({
-        type: 'error',
-        title: t('you_are_using_free_version'),
-        message: t('this_Feature_is_only_Available_in_Paid_Version'),
-      });
-      setDeleteId('');
-    }
-
+    await mutateDelete({
+      variables: { id: deleteId },
+      onCompleted: () => {
+        showToast({
+          type: 'success',
+          title: t('Delete Zone'),
+          message: t('Zone has been deleted successfully'),
+          duration: 3000,
+        });
+        setDeleteId('');
+      },
+    });
   }
 
   return (

@@ -283,7 +283,7 @@ export const uz = {
     useCurrentLocation: 'Joriy Joylashuvdan Foydalanish',
     locationPermissionMessage:
       'Ushbu xabarni bosing va Sozlamalarni oching, keyin ilovaga joylashuvdan foydalanishga ruxsat bering.',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'Yaqin atrofdagi restoranlarni topish uchun bizga faqat sizning joylashuvingiz kerak',
     selectAnotherLocation: 'Joylashuvni Qo‘lda Bel Gilash',
     setLocation: 'Joylashuvni Bel Gilash',

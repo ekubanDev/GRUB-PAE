@@ -283,7 +283,7 @@ export const vi = {
     useCurrentLocation: 'Sử dụng vị trí hiện tại',
     locationPermissionMessage:
       'Nhấn vào tin nhắn này để mở cài đặt, sau đó cho phép ứng dụng truy cập vị trí.',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'Chúng tôi chỉ cần vị trí của bạn để tìm các nhà hàng gần bạn',
     selectAnotherLocation: 'Đặt vị trí thủ công',
     setLocation: 'Đặt vị trí',

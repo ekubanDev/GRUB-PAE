@@ -283,7 +283,7 @@ export const tr = {
     useCurrentLocation: 'Mevcut Konumu Kullan',
     locationPermissionMessage:
       'Ayarları açmak için bu mesaja dokunun, ardından uygulamaya konum izni verin.',
-    enategaUseYourLocationMessage:
+    grubPaeUseYourLocationMessage:
       'Yakınınızdaki restoranları bulmak için sadece konumunuza ihtiyacımız var',
     selectAnotherLocation: 'Konumu Manuel Olarak Belirle',
     setLocation: 'Konumu Belirle',

@@ -265,7 +265,7 @@ export const th = {
     currentLocation: 'ตำแหน่งปัจจุบัน',
     useCurrentLocation: 'ใช้ตำแหน่งปัจจุบัน',
     locationPermissionMessage: 'คลิกข้อความนี้เพื่อเปิดการตั้งค่าและอนุญาตให้แอปใช้ตำแหน่ง',
-    enategaUseYourLocationMessage: 'เพื่อค้นหาร้านอาหารใกล้คุณ เราต้องการตำแหน่งของคุณ',
+    grubPaeUseYourLocationMessage: 'เพื่อค้นหาร้านอาหารใกล้คุณ เราต้องการตำแหน่งของคุณ',
     selectAnotherLocation: 'ตั้งค่าตำแหน่งด้วยตนเอง',
     setLocation: 'ตั้งค่าตำแหน่ง',
     cartIsEmpty: 'ตะกร้าว่างเปล่า',

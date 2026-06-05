@@ -265,7 +265,7 @@ export const pl = {
     currentLocation: 'Aktualna lokalizacja',
     useCurrentLocation: 'Użyj aktualnej lokalizacji',
     locationPermissionMessage: 'Kliknij ten komunikat, aby otworzyć Ustawienia, a następnie zezwól aplikacji na używanie lokalizacji z uprawnień.',
-    enategaUseYourLocationMessage: 'Aby znaleźć restauracje w pobliżu, potrzebujemy tylko Twojej lokalizacji',
+    grubPaeUseYourLocationMessage: 'Aby znaleźć restauracje w pobliżu, potrzebujemy tylko Twojej lokalizacji',
     selectAnotherLocation: 'Ustaw lokalizację ręcznie',
     setLocation: 'Ustaw lokalizację',
     cartIsEmpty: 'Koszyk jest pusty',
